@@ -37,3 +37,18 @@ export const fetchCategoriesFailure = (error) => {
     payload: error,
   };
 };
+
+export const setIsSelected = (name) => ({
+  type: 'SET_SELECTED',
+  name,
+});
+
+// export const forbidAllIsSelected = (categories) => ({
+//   type: 'FORBID_ALL_SELECTED',
+//   categories,
+// });
+
+// export const approveAllIsSelected = (categories) => ({
+//   type: 'APPROVE_ALL_SELECTED',
+//   categories,
+// });

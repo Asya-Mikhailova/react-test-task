@@ -1,1 +1,1 @@
-export { fetchCategories } from './categories/categoriesActions';
+export * from './categories/categoriesActions';

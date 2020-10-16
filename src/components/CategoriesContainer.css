@@ -17,10 +17,11 @@
 /* CATEGORIES */
 
 .categoriesContainer {
-  height: 300px;
+  max-height: 300px;
   display: flex;
   flex-wrap: wrap;
   flex-direction: column;
+  overflow: auto;
 }
 
 .category {
@@ -44,11 +45,6 @@
   margin-right: 10px;
 }
 
-.status-btn:hover {
-  cursor: pointer;
-  background-color: rgb(194, 189, 189);
-}
-
 /* FOOTER */
 
 .footer {
@@ -62,7 +58,7 @@
 
 .buttonContainer {
   display: flex;
-  width: 190px;
+  width: 210px;
   justify-content: space-between;
 }
 
@@ -70,6 +66,11 @@
   background-color: #fff;
   border: none;
   padding: 7px;
+  border-radius: 3px;
+}
+
+.btn i {
+  margin-right: 5px;
 }
 
 .btn-border {
@@ -80,7 +81,8 @@
 
 .btn:hover {
   cursor: pointer;
-  background-color: rgb(194, 189, 189);
+  background-color: rgb(230, 234, 243);
+  border: solid 1px #000;
 }
 
 .filterContainer {

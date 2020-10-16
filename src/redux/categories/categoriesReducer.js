@@ -23,6 +23,23 @@ const reducer = (state = initialState, action) => {
         categories: [],
         error: action.payload,
       };
+    case 'SET_SELECTED':
+      return {
+        ...state,
+        categories: state.categories.map((category) => ({
+          ...category,
+          isSelected:
+            category.name === action.name
+              ? !category.isSelected
+              : category.isSelected,
+        })),
+      };
+    // case 'FORBID_ALL_SELECTED':
+    //   return{
+    //     ...state,
+    //     categories: state.categories,
+    //     forbidIsSelected:
+    //   }
     default:
       return state;
   }
