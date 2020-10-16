@@ -1,19 +1,14 @@
-import axios from 'axios';
-
 export const fetchCategories = () => {
   return (dispatch) => {
     dispatch(fetchCategoriesRequest());
-    axios
-      .get('http://localhost:3004/categories')
+    fetch('http://localhost:3004/categories')
+      .then((response) => response.json())
       .then((response) => {
-        const categories = response.data;
+        const categories = response;
         setTimeout(() => {
-          // to emulate some network delay
+          //       // to emulate some network delay
           dispatch(fetchCategoriesSuccess(categories));
         }, 2000);
-      })
-      .catch((error) => {
-        dispatch(fetchCategoriesFailure(error.message));
       });
   };
 };

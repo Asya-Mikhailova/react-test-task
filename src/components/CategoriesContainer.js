@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { fetchCategories, setIsSelected } from '../redux';
 import './CategoriesContainer.css';
@@ -7,6 +7,11 @@ export const CategoriesContainer = () => {
   const loading = useSelector((state) => state.categories.loading);
   const error = useSelector((state) => state.categories.error);
   const categories = useSelector((state) => state.categories.categories);
+  let isForbidden = false;
+  let isApproved = false;
+  // let total = 22;
+  // const [approvedCount, setApprovedCount] = useState(0);
+  // let forbiddenCount = total - approvedCount;
 
   const dynamicSort = (property) => {
     let sortOrder = 1;
@@ -35,6 +40,7 @@ export const CategoriesContainer = () => {
 
   const selectCategory = (name) => {
     dispatch(setIsSelected(name));
+    // setApprovedCount(approvedCount + 1);
   };
 
   return loading ? (
@@ -67,17 +73,17 @@ export const CategoriesContainer = () => {
 
       <div className='footer'>
         <div className='buttonContainer'>
-          <button className='btn'>
+          <button onClick={() => (isForbidden = !isForbidden)} className='btn'>
             <i className='fa fa-simplybuilt'></i>Forbid All
           </button>
-          <button className='btn'>
+          <button onClick={() => (isApproved = !isApproved)} className='btn'>
             <i className='fa fa-smile-o'></i>Approve All
           </button>
         </div>
         <div className='filterContainer'>
           <p>Filters</p>
-          <button className='btn btn-border'> Approved 17</button>
-          <button className='btn btn-border'> Forbidden 7</button>
+          <button className='btn btn-border'> Approved </button>
+          <button className='btn btn-border'> Forbidden</button>
         </div>
       </div>
     </div>
