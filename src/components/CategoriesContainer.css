@@ -17,11 +17,21 @@
 /* CATEGORIES */
 
 .categoriesContainer {
-  max-height: 300px;
+  /* max-height: 300px;
   display: flex;
   flex-wrap: wrap;
   flex-direction: column;
-  overflow: auto;
+  overflow: auto; */
+  column-width: 250px;
+  column-gap: 50px;
+  text-align: left;
+  overflow-y: scroll;
+  margin: 10px;
+}
+
+.verticalScroll {
+  height: 300px;
+  overflow-y: auto;
 }
 
 .category {

@@ -49,26 +49,28 @@ export const CategoriesContainer = () => {
     <h2>{error}</h2>
   ) : (
     <div className='wrapper'>
-      <div className='categoriesContainer'>
-        {categories.map((category, index) => (
-          <div
-            className='category'
-            onClick={() => selectCategory(category.name)}
-          >
-            <button className='status-btn'>
-              {category.isSelected ? (
-                <i className='fa fa-smile-o'></i>
-              ) : (
-                <i className='fa fa-simplybuilt'></i>
-              )}
-            </button>
+      <div className='verticalScroll'>
+        <div className='categoriesContainer'>
+          {categories.map((category, index) => (
+            <div
+              className='category'
+              onClick={() => selectCategory(category.name)}
+            >
+              <button className='status-btn'>
+                {category.isSelected ? (
+                  <i className='fa fa-smile-o'></i>
+                ) : (
+                  <i className='fa fa-simplybuilt'></i>
+                )}
+              </button>
 
-            <p key={index}>{category.name}</p>
-            <i className='fa fa-info tooltip'>
-              <span className='tooltiptext'>{category.description}</span>
-            </i>
-          </div>
-        ))}
+              <p key={index}>{category.name}</p>
+              <i className='fa fa-info tooltip'>
+                <span className='tooltiptext'>{category.description}</span>
+              </i>
+            </div>
+          ))}
+        </div>
       </div>
 
       <div className='footer'>
