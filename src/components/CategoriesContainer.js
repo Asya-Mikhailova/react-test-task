@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { fetchCategories, setIsSelected } from '../redux';
-import './CategoriesContainer.css';
+import './CategoriesContainer.scss';
 
 export const CategoriesContainer = () => {
   const loading = useSelector((state) => state.categories.loading);
