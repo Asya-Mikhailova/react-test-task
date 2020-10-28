@@ -1,28 +1,23 @@
-@import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
+@import './styles/colors.scss';
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-.wrapper {
+.categories-wrapper {
   margin: 0 auto;
-  font-family: 'Open Sans';
+  font-family: 'OpenSans';
   font-size: 14px;
-  background-color: rgb(250, 248, 248);
+  background-color: $color-primary;
   text-align: center;
 }
 
 /* CATEGORIES */
 
-.categoriesContainer {
+.categories-container {
   column-width: 250px;
+  column-gap: 40px;
   text-align: left;
   margin: 10px;
 }
 
-.verticalScroll {
+.scroll-wrapper {
   height: 300px;
   overflow-y: auto;
 }
@@ -32,21 +27,20 @@
   width: 100%;
   justify-content: flex-start;
   align-items: center;
-  margin: 10px;
   padding: 5px;
 }
 
 .category:hover {
-  background-color: rgb(219, 221, 224);
+  background-color: $color-accent;
 }
 
 .status-btn {
   width: 25px;
   height: 25px;
-  background-color: #fff;
-  border: 1px solid #ccc;
+  background-color: $color-primary;
+  border: 1px solid $color-accent;
   border-radius: 5px;
-  margin-right: 10px;
+  margin-right: 7px;
 }
 
 /* FOOTER */
@@ -57,19 +51,18 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: rgb(238, 238, 238);
+  background-color: $color-accent;
 }
 
-.buttonContainer {
+.button-container {
   display: flex;
-  width: 210px;
+  width: 220px;
   justify-content: space-between;
 }
 
 .btn {
-  background-color: #fff;
+  background-color: $color-primary;
   border: none;
-  padding: 7px;
   border-radius: 3px;
 }
 
@@ -78,18 +71,17 @@
 }
 
 .btn-border {
-  border: 1px solid rgb(0, 140, 255);
-  padding: 3px 15px;
+  border: 1px solid $color-blue;
   border-radius: 3px;
 }
 
 .btn:hover {
   cursor: pointer;
-  background-color: rgb(230, 234, 243);
-  border: solid 1px #000;
+  background-color: $color-hover;
+  border: solid 1px $color-text;
 }
 
-.filterContainer {
+.filter-container {
   display: flex;
   width: 270px;
   justify-content: space-between;
@@ -98,19 +90,19 @@
 /* FONT-AWESOME */
 
 .fa-simplybuilt {
-  font-size: 14px;
-  color: rgb(224, 35, 35);
+  font-size: 16px;
+  color: $color-red;
 }
 
 .fa-smile-o {
-  font-size: 14px;
-  color: rgb(29, 233, 63);
+  font-size: 16px;
+  color: $color-green;
 }
 
 .fa-info {
-  font-size: 14px;
-  color: #999;
-  margin-left: 10px;
+  font-size: 16px;
+  color: $color-grey;
+  margin-left: 5px;
 }
 
 .fa-info:hover {
@@ -126,8 +118,8 @@
 
 .tooltip .tooltiptext {
   visibility: hidden;
-  background-color: #fff;
-  color: #000;
+  background-color: $color-primary;
+  color: $color-text;
   text-align: center;
   padding: 5px 0;
   border-radius: 6px;
@@ -154,5 +146,5 @@
   margin-left: -5px;
   border-width: 5px;
   border-style: solid;
-  border-color: #fff transparent transparent transparent;
+  border-color: $color-primary transparent transparent transparent;
 }

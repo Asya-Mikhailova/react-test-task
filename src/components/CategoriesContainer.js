@@ -4,8 +4,6 @@ import { fetchCategories } from '../redux';
 
 import { CategoryItem } from './CategoryItem';
 import { Button } from './Button';
-import { FilterButton } from './FilterButton';
-import './CategoriesContainer.scss';
 
 export const CategoriesContainer = () => {
   const loading = useSelector((state) => state.categories.loading);
@@ -45,17 +43,17 @@ export const CategoriesContainer = () => {
   if (error) return <h2>{error}</h2>;
 
   return (
-    <div className='wrapper'>
-      <div className='verticalScroll'>
-        <div className='categoriesContainer'>
-          {categories.map((category, index) => (
+    <div className='categories-wrapper'>
+      <div className='scroll-wrapper'>
+        <div className='categories-container'>
+          {categories.map((category) => (
             <CategoryItem key={category.name} category={category} />
           ))}
         </div>
       </div>
 
       <div className='footer'>
-        <div className='buttonContainer'>
+        <div className='button-container'>
           <Button>
             <i className='fa fa-simplybuilt' /> Forbid All
           </Button>
@@ -63,7 +61,7 @@ export const CategoriesContainer = () => {
             <i className='fa fa-smile-o' /> Approve All
           </Button>
         </div>
-        <div className='filterContainer'>
+        <div className='filter-container'>
           <p>Filters</p>
           <Button className='btn-border' filter={true}>
             Approved
