@@ -2,7 +2,7 @@ import React from 'react';
 import { useDispatch } from 'react-redux';
 import { setIsSelected } from '../redux';
 
-export const CategoryItem = ({ category, index }) => {
+export const CategoryItem = ({ category, key }) => {
   const dispatch = useDispatch();
 
   const selectCategory = (name) => {
@@ -13,13 +13,13 @@ export const CategoryItem = ({ category, index }) => {
     <div className='category' onClick={() => selectCategory(category.name)}>
       <button className='status-btn'>
         {category.isSelected ? (
-          <i className='fa fa-smile-o'></i>
+          <i className='fa fa-smile-o' />
         ) : (
-          <i className='fa fa-simplybuilt'></i>
+          <i className='fa fa-simplybuilt' />
         )}
       </button>
 
-      <p key={index}>{category.name}</p>
+      <p key={key}>{category.name}</p>
       <i className='fa fa-info tooltip'>
         <span className='tooltiptext'>{category.description}</span>
       </i>

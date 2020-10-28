@@ -41,33 +41,36 @@ export const CategoriesContainer = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  return loading ? (
-    <h2>Loading...</h2>
-  ) : error ? (
-    <h2>{error}</h2>
-  ) : (
+  if (loading) return <h2>Loading...</h2>;
+  if (error) return <h2>{error}</h2>;
+
+  return (
     <div className='wrapper'>
       <div className='verticalScroll'>
         <div className='categoriesContainer'>
           {categories.map((category, index) => (
-            <CategoryItem
-              key={category.name}
-              category={category}
-              index={index}
-            />
+            <CategoryItem key={category.name} category={category} />
           ))}
         </div>
       </div>
 
       <div className='footer'>
         <div className='buttonContainer'>
-          <Button forbid={true} />
-          <Button forbid={false} />
+          <Button>
+            <i className='fa fa-simplybuilt' /> Forbid All
+          </Button>
+          <Button>
+            <i className='fa fa-smile-o' /> Approve All
+          </Button>
         </div>
         <div className='filterContainer'>
           <p>Filters</p>
-          <FilterButton filter={true} title='Approved' />
-          <FilterButton filter={false} title='Forbidden' />
+          <Button className='btn-border' filter={true}>
+            Approved
+          </Button>
+          <Button className='btn-border' filter={false}>
+            Forbidden
+          </Button>
         </div>
       </div>
     </div>

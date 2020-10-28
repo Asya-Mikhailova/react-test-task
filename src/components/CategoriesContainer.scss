@@ -17,15 +17,8 @@
 /* CATEGORIES */
 
 .categoriesContainer {
-  /* max-height: 300px;
-  display: flex;
-  flex-wrap: wrap;
-  flex-direction: column;
-  overflow: auto; */
   column-width: 250px;
-  column-gap: 50px;
   text-align: left;
-  overflow-y: scroll;
   margin: 10px;
 }
 
@@ -35,7 +28,8 @@
 }
 
 .category {
-  display: flex;
+  display: inline-flex;
+  width: 100%;
   justify-content: flex-start;
   align-items: center;
   margin: 10px;
