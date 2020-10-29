@@ -15,65 +15,66 @@
   &:focus {
     outline: none;
   }
+  &__status-icon {
+    width: 25px;
+    height: 25px;
+    background-color: $color-primary;
+    border: 1px solid $color-accent;
+    border-radius: 5px;
+    margin-right: 7px;
+    text-align: center;
+    line-height: 23px;
+    &_success {
+      color: $color-green;
+    }
+    &_danger {
+      color: $color-red;
+    }
+  }
+  /*TOOLTIP*/
+  &__tooltip {
+    position: relative;
+    display: inline-block;
+    &:hover {
+      .category__tooltip_tooltiptext {
+        visibility: visible;
+      }
+    }
+    &_tooltiptext {
+      visibility: hidden;
+      background-color: $color-primary;
+      color: $color-text;
+      text-align: center;
+      padding: 5px 0;
+      border-radius: 6px;
+
+      /* Position the tooltip text - see examples below! */
+      position: absolute;
+      z-index: 1;
+      width: 300px;
+      bottom: 100%;
+      left: 50%;
+      margin-left: -110px; /* Use half of the width (120/2 = 60), to center the tooltip */
+      &::after {
+        content: ' ';
+        position: absolute;
+        top: 100%; /* At the bottom of the tooltip */
+        left: 50%;
+        margin-left: -5px;
+        border-width: 5px;
+        border-style: solid;
+        border-color: $color-primary transparent transparent transparent;
+      }
+    }
+  }
 }
 
 /*FONT AWESOME*/
-
-.category__status-icon {
-  width: 25px;
-  height: 25px;
-  background-color: $color-primary;
-  border: 1px solid $color-accent;
-  border-radius: 5px;
-  margin-right: 7px;
-  text-align: center;
-  line-height: 23px;
-  &.fa-simplybuilt {
-    margin-right: 5px;
-  }
-}
 
 .fa-info {
   color: $color-grey;
   margin-left: 5px;
   &:hover {
     cursor: pointer;
-  }
-}
-
-/* TOOLTIP */
-
-.tooltip {
-  position: relative;
-  display: inline-block;
-  & .tooltiptext {
-    visibility: hidden;
-    background-color: $color-primary;
-    color: $color-text;
-    text-align: center;
-    padding: 5px 0;
-    border-radius: 6px;
-
-    /* Position the tooltip text - see examples below! */
-    position: absolute;
-    z-index: 1;
-    width: 300px;
-    bottom: 100%;
-    left: 50%;
-    margin-left: -110px; /* Use half of the width (120/2 = 60), to center the tooltip */
-  }
-  &:hover .tooltiptext {
-    visibility: visible;
-  }
-
-  & .tooltiptext::after {
-    content: ' ';
-    position: absolute;
-    top: 100%; /* At the bottom of the tooltip */
-    left: 50%;
-    margin-left: -5px;
-    border-width: 5px;
-    border-style: solid;
-    border-color: $color-primary transparent transparent transparent;
   }
 }

@@ -1,44 +1,47 @@
 @import '../styles/_colors.scss';
 
-.categories-wrapper {
+.categories {
   margin: 0 auto;
   background-color: $color-primary;
   text-align: center;
-}
-
-/* CATEGORIES */
-
-.categories-container {
-  column-width: 300px;
-  column-gap: 40px;
-  margin: 10px;
-}
-
-.scroll-wrapper {
-  height: 300px;
-  overflow-y: auto;
-}
-
-/* FOOTER */
-
-.footer {
-  height: 50px;
-  padding: 0 15px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background-color: $color-accent;
-}
-
-.button-container {
-  display: flex;
-  width: 250px;
-  justify-content: space-between;
-}
-
-.filter-container {
-  display: flex;
-  width: 290px;
-  justify-content: space-between;
-  align-items: center;
+  &__scroll-wrapper {
+    height: 300px;
+    overflow-y: auto;
+  }
+  &__categories-container {
+    column-width: 300px;
+    column-gap: 40px;
+    margin: 10px;
+  }
+  &__categories-footer {
+    height: 50px;
+    padding: 0 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: $color-accent;
+    &__button-container {
+      display: flex;
+      width: 250px;
+      justify-content: space-between;
+      &__btn_danger {
+        color: $color-red;
+        margin-right: 3px;
+      }
+      &__btn_success {
+        color: $color-green;
+        margin-right: 3px;
+      }
+    }
+    &__filter-container {
+      display: flex;
+      width: 290px;
+      justify-content: space-between;
+      align-items: center;
+      &__btn_border {
+        border: 1px solid $color-blue;
+        border-radius: 3px;
+      }
+    }
+  }
 }

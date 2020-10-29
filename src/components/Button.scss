@@ -17,11 +17,11 @@
   &:focus {
     border: 1px solid $color-text;
   }
-  &.btn-border {
+  &_border {
     border: 1px solid $color-blue;
     border-radius: 3px;
-  }
-  &.btn-border:focus {
-    border: 1px solid $color-text;
+    &:focus {
+      border: 1px solid $color-text;
+    }
   }
 }

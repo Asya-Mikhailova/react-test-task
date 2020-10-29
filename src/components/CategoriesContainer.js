@@ -44,30 +44,38 @@ export const CategoriesContainer = () => {
   if (error) return <h2>{error}</h2>;
 
   return (
-    <div className='categories-wrapper'>
-      <div className='scroll-wrapper'>
-        <div className='categories-container'>
+    <div className='categories'>
+      <div className='categories__scroll-wrapper'>
+        <div className='categories__categories-container'>
           {categories.map((category) => (
             <CategoryItem key={category.name} category={category} />
           ))}
         </div>
       </div>
 
-      <div className='footer'>
-        <div className='button-container'>
+      <div className='categories__categories-footer'>
+        <div className='categories__categories-footer__button-container'>
           <Button>
-            <i className='fa fa-simplybuilt color-danger' /> Forbid All
+            <i className='fa fa-simplybuilt categories__categories-footer__button-container__btn_danger' />
+            Forbid All
           </Button>
           <Button>
-            <i className='fa fa-smile-o color-success' /> Approve All
+            <i className='fa fa-smile-o categories__categories-footer__button-container__btn_success' />
+            Approve All
           </Button>
         </div>
-        <div className='filter-container'>
+        <div className='categories__categories-footer__filter-container'>
           <p>Filters</p>
-          <Button className='btn-border' filter={true}>
+          <Button
+            className=' categories__categories-footer__filter-container__btn_border'
+            filter={true}
+          >
             Approved
           </Button>
-          <Button className='btn-border' filter={false}>
+          <Button
+            className='categories__categories-footer__filter-container__btn_border'
+            filter={false}
+          >
             Forbidden
           </Button>
         </div>

@@ -15,15 +15,17 @@ export const CategoryItem = ({ category, key }) => {
     <button className='category' onClick={() => selectCategory(category.name)}>
       <div className='category__status-icon'>
         {category.isSelected ? (
-          <i className='fa fa-smile-o color-success' />
+          <i className='fa fa-smile-o category__status-icon_success' />
         ) : (
-          <i className='fa fa-simplybuilt color-danger ' />
+          <i className='fa fa-simplybuilt category__status-icon_danger ' />
         )}
       </div>
 
       <p key={key}>{category.name}</p>
-      <i className='fa fa-info tooltip'>
-        <span className='tooltiptext'>{category.description}</span>
+      <i className='fa fa-info category__tooltip'>
+        <span className='category__tooltip_tooltiptext'>
+          {category.description}
+        </span>
       </i>
     </button>
   );
