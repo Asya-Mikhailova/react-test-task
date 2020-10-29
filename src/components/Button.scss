@@ -1,0 +1,43 @@
+@import '../styles/_colors.scss';
+
+.btn {
+  background-color: $color-primary;
+  border: none;
+  border-radius: 3px;
+  width: 110px;
+  height: 30px;
+}
+
+.btn.btn-border {
+  border: 1px solid $color-blue;
+  border-radius: 3px;
+}
+
+.btn:hover {
+  cursor: pointer;
+  background-color: $color-hover;
+  border: solid 1px $color-text;
+}
+
+.btn.status-btn {
+  width: 25px;
+  height: 25px;
+  background-color: $color-primary;
+  border: 1px solid $color-accent;
+  border-radius: 5px;
+  margin-right: 7px;
+}
+
+/*FONT AWESOME*/
+
+.fa-simplybuilt {
+  font-size: 16px;
+  color: $color-red;
+  text-align: center;
+}
+
+.fa-smile-o {
+  font-size: 16px;
+  color: $color-green;
+  text-align: center;
+}

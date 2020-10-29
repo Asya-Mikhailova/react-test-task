@@ -3,6 +3,7 @@ import { useDispatch } from 'react-redux';
 import { setIsSelected } from '../redux';
 
 import { Button } from './Button';
+import './CategoryItem.scss';
 
 export const CategoryItem = ({ category, key }) => {
   const dispatch = useDispatch();

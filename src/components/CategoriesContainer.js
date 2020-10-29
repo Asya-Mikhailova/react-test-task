@@ -4,6 +4,7 @@ import { fetchCategories } from '../redux';
 
 import { CategoryItem } from './CategoryItem';
 import { Button } from './Button';
+import './CategoriesContainer.scss';
 
 export const CategoriesContainer = () => {
   const loading = useSelector((state) => state.categories.loading);
