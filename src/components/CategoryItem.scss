@@ -3,27 +3,23 @@
 .category {
   display: inline-flex;
   width: 100%;
-  //justify-content: flex-start;
   align-items: center;
   padding: 5px;
   border: none;
   background-color: $color-primary;
   text-align: left;
-}
-
-.category,
-.category:active,
-.category:focus {
-  outline: none;
-}
-
-.category:hover {
-  background-color: $color-accent;
+  &:hover {
+    background-color: $color-accent;
+  }
+  &:active,
+  &:focus {
+    outline: none;
+  }
 }
 
 /*FONT AWESOME*/
 
-.status-icon {
+.category__status-icon {
   width: 25px;
   height: 25px;
   background-color: $color-primary;
@@ -32,27 +28,17 @@
   margin-right: 7px;
   text-align: center;
   line-height: 23px;
-}
-
-.status-icon.fa-simplybuilt {
-  font-size: 14px;
-  color: $color-red;
-  margin-right: 5px;
-}
-
-.fa-smile-o {
-  font-size: 14px;
-  color: $color-green;
+  &.fa-simplybuilt {
+    margin-right: 5px;
+  }
 }
 
 .fa-info {
-  font-size: 14px;
   color: $color-grey;
   margin-left: 5px;
-}
-
-.fa-info:hover {
-  cursor: pointer;
+  &:hover {
+    cursor: pointer;
+  }
 }
 
 /* TOOLTIP */
@@ -60,36 +46,34 @@
 .tooltip {
   position: relative;
   display: inline-block;
-}
+  & .tooltiptext {
+    visibility: hidden;
+    background-color: $color-primary;
+    color: $color-text;
+    text-align: center;
+    padding: 5px 0;
+    border-radius: 6px;
 
-.tooltip .tooltiptext {
-  visibility: hidden;
-  background-color: $color-primary;
-  color: $color-text;
-  text-align: center;
-  padding: 5px 0;
-  border-radius: 6px;
+    /* Position the tooltip text - see examples below! */
+    position: absolute;
+    z-index: 1;
+    width: 300px;
+    bottom: 100%;
+    left: 50%;
+    margin-left: -110px; /* Use half of the width (120/2 = 60), to center the tooltip */
+  }
+  &:hover .tooltiptext {
+    visibility: visible;
+  }
 
-  /* Position the tooltip text - see examples below! */
-  position: absolute;
-  z-index: 1;
-  width: 300px;
-  bottom: 100%;
-  left: 50%;
-  margin-left: -110px; /* Use half of the width (120/2 = 60), to center the tooltip */
-}
-
-.tooltip:hover .tooltiptext {
-  visibility: visible;
-}
-
-.tooltip .tooltiptext::after {
-  content: ' ';
-  position: absolute;
-  top: 100%; /* At the bottom of the tooltip */
-  left: 50%;
-  margin-left: -5px;
-  border-width: 5px;
-  border-style: solid;
-  border-color: $color-primary transparent transparent transparent;
+  & .tooltiptext::after {
+    content: ' ';
+    position: absolute;
+    top: 100%; /* At the bottom of the tooltip */
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: $color-primary transparent transparent transparent;
+  }
 }

@@ -2,7 +2,6 @@ import React from 'react';
 import { useDispatch } from 'react-redux';
 import { setIsSelected } from '../redux';
 
-import { Button } from './Button';
 import './CategoryItem.scss';
 
 export const CategoryItem = ({ category, key }) => {
@@ -14,11 +13,11 @@ export const CategoryItem = ({ category, key }) => {
 
   return (
     <button className='category' onClick={() => selectCategory(category.name)}>
-      <div className='status-icon'>
+      <div className='category__status-icon'>
         {category.isSelected ? (
-          <i className='fa fa-smile-o' />
+          <i className='fa fa-smile-o color-success' />
         ) : (
-          <i className='fa fa-simplybuilt' />
+          <i className='fa fa-simplybuilt color-danger ' />
         )}
       </div>
 

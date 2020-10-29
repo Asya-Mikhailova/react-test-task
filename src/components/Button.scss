@@ -6,40 +6,22 @@
   border-radius: 3px;
   width: 110px;
   height: 30px;
-}
-
-.btn,
-.btn:active {
-  outline: none;
-}
-
-.btn:focus {
-  border: 1px solid $color-text;
-}
-
-.btn.btn-border:focus {
-  border: 1px solid $color-text;
-}
-
-.btn.btn-border {
-  border: 1px solid $color-blue;
-  border-radius: 3px;
-}
-
-.btn:hover {
-  cursor: pointer;
-  background-color: $color-hover;
-  border: solid 1px $color-text;
-}
-
-/*FONT AWESOME*/
-
-.fa-simplybuilt {
-  font-size: 14px;
-  color: $color-red;
-}
-
-.fa-smile-o {
-  font-size: 14px;
-  color: $color-green;
+  &:hover {
+    cursor: pointer;
+    background-color: $color-hover;
+    border: solid 1px $color-text;
+  }
+  &:active {
+    outline: none;
+  }
+  &:focus {
+    border: 1px solid $color-text;
+  }
+  &.btn-border {
+    border: 1px solid $color-blue;
+    border-radius: 3px;
+  }
+  &.btn-border:focus {
+    border: 1px solid $color-text;
+  }
 }

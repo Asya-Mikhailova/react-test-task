@@ -56,10 +56,10 @@ export const CategoriesContainer = () => {
       <div className='footer'>
         <div className='button-container'>
           <Button>
-            <i className='fa fa-simplybuilt' /> Forbid All
+            <i className='fa fa-simplybuilt color-danger' /> Forbid All
           </Button>
           <Button>
-            <i className='fa fa-smile-o' /> Approve All
+            <i className='fa fa-smile-o color-success' /> Approve All
           </Button>
         </div>
         <div className='filter-container'>
