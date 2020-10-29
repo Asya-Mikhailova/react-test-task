@@ -3,9 +3,18 @@
 .category {
   display: inline-flex;
   width: 100%;
-  justify-content: flex-start;
+  //justify-content: flex-start;
   align-items: center;
   padding: 5px;
+  border: none;
+  background-color: $color-primary;
+  text-align: left;
+}
+
+.category,
+.category:active,
+.category:focus {
+  outline: none;
 }
 
 .category:hover {
@@ -14,19 +23,30 @@
 
 /*FONT AWESOME*/
 
-.status-btn.fa-simplybuilt {
-  font-size: 16px;
+.status-icon {
+  width: 25px;
+  height: 25px;
+  background-color: $color-primary;
+  border: 1px solid $color-accent;
+  border-radius: 5px;
+  margin-right: 7px;
+  text-align: center;
+  line-height: 23px;
+}
+
+.status-icon.fa-simplybuilt {
+  font-size: 14px;
   color: $color-red;
   margin-right: 5px;
 }
 
 .fa-smile-o {
-  font-size: 16px;
+  font-size: 14px;
   color: $color-green;
 }
 
 .fa-info {
-  font-size: 16px;
+  font-size: 14px;
   color: $color-grey;
   margin-left: 5px;
 }
@@ -49,7 +69,6 @@
   text-align: center;
   padding: 5px 0;
   border-radius: 6px;
-  font-family: 'Open Sans';
 
   /* Position the tooltip text - see examples below! */
   position: absolute;

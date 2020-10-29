@@ -8,6 +8,19 @@
   height: 30px;
 }
 
+.btn,
+.btn:active {
+  outline: none;
+}
+
+.btn:focus {
+  border: 1px solid $color-text;
+}
+
+.btn.btn-border:focus {
+  border: 1px solid $color-text;
+}
+
 .btn.btn-border {
   border: 1px solid $color-blue;
   border-radius: 3px;
@@ -19,29 +32,14 @@
   border: solid 1px $color-text;
 }
 
-.btn.status-btn {
-  width: 25px;
-  height: 25px;
-  background-color: $color-primary;
-  border: 1px solid $color-accent;
-  border-radius: 5px;
-  margin-right: 7px;
-  display: inline-block;
-  text-align: center;
-}
-
-.btn.status-btn i {
-  margin-right: 6px;
-}
-
 /*FONT AWESOME*/
 
 .fa-simplybuilt {
-  font-size: 16px;
+  font-size: 14px;
   color: $color-red;
 }
 
 .fa-smile-o {
-  font-size: 16px;
+  font-size: 14px;
   color: $color-green;
 }

@@ -13,19 +13,19 @@ export const CategoryItem = ({ category, key }) => {
   };
 
   return (
-    <div className='category' onClick={() => selectCategory(category.name)}>
-      <Button className='status-btn'>
+    <button className='category' onClick={() => selectCategory(category.name)}>
+      <div className='status-icon'>
         {category.isSelected ? (
           <i className='fa fa-smile-o' />
         ) : (
           <i className='fa fa-simplybuilt' />
         )}
-      </Button>
+      </div>
 
       <p key={key}>{category.name}</p>
       <i className='fa fa-info tooltip'>
         <span className='tooltiptext'>{category.description}</span>
       </i>
-    </div>
+    </button>
   );
 };
