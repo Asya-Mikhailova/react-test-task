@@ -2,32 +2,32 @@ import React from 'react';
 import { useDispatch } from 'react-redux';
 import { setIsSelected } from '../redux';
 
-// import { withStyles } from '@material-ui/core/styles';
-// import Tooltip from '@material-ui/core/Tooltip';
-
-import { CustomTooltip } from './CustomTooltip';
-
 import './CategoryItem.scss';
 
-// const CustomTooltip = withStyles({
-//   tooltip: {
-//     width: '380px',
-//     fontSize: '14px',
-//     color: 'black',
-//     backgroundColor: 'rgba(255, 255, 255, 0.8)',
-//     opacity: '0.7',
-//     border: '1px solid #eceeef',
-//     padding: '15px',
-//     margin: '-2px 0',
-//     textAlign: 'center',
-//   },
-//   arrow: {
-//     '&:before': {
-//       border: '1px solid #eceeef',
-//     },
-//     color: 'rgba(255, 255, 255, 0.8)',
-//   },
-// })(Tooltip);
+import { withStyles } from '@material-ui/core/styles';
+import Tooltip from '@material-ui/core/Tooltip';
+
+//import { CustomTooltip } from './CustomTooltip';
+
+const CustomTooltip = withStyles({
+  tooltip: {
+    width: '380px',
+    fontSize: '14px',
+    color: 'black',
+    backgroundColor: 'rgba(255, 255, 255, 0.9)',
+    border: '1px solid #eceeef',
+    padding: '15px',
+    margin: '5px 0',
+    textAlign: 'center',
+  },
+  arrow: {
+    '&:before': {
+      border: '1px solid #eceeef',
+      width: '15px',
+    },
+    color: 'rgba(255, 255, 255, 0.8)',
+  },
+})(Tooltip);
 
 export const CategoryItem = ({ category }) => {
   const dispatch = useDispatch();
@@ -56,8 +56,12 @@ export const CategoryItem = ({ category }) => {
           )}
         </div>
 
-        <p>{category.name}</p>
-        <i className='fa fa-info'></i>
+        <p>
+          {category.name}
+          <span>
+            <i className='fa fa-info' />
+          </span>
+        </p>
       </button>
     </CustomTooltip>
   );

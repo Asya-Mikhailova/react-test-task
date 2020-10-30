@@ -56,21 +56,21 @@ export const CategoriesContainer = () => {
 
       <div className='categories__footer'>
         <div className='categories__button-container'>
-          <Button className='button'>
+          <Button className='categories__button'>
             <i className='fa fa-simplybuilt categories__button-container__icon_danger' />
             Forbid All
           </Button>
-          <Button className='button'>
+          <Button className='categories__button'>
             <i className='fa fa-smile-o categories__button-container__icon_success' />
             Approve All
           </Button>
         </div>
         <div className='categories__filter-container'>
           <p>Filters</p>
-          <Button className='button_border' filter={true}>
+          <Button className='categories__button_border' filter={true}>
             Approved
           </Button>
-          <Button className='button_border' filter={false}>
+          <Button className='categories__button_border' filter={false}>
             Forbidden
           </Button>
         </div>
