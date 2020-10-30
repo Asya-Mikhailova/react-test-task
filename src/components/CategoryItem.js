@@ -2,9 +2,32 @@ import React from 'react';
 import { useDispatch } from 'react-redux';
 import { setIsSelected } from '../redux';
 
+// import { withStyles } from '@material-ui/core/styles';
+// import Tooltip from '@material-ui/core/Tooltip';
+
 import { CustomTooltip } from './CustomTooltip';
 
 import './CategoryItem.scss';
+
+// const CustomTooltip = withStyles({
+//   tooltip: {
+//     width: '380px',
+//     fontSize: '14px',
+//     color: 'black',
+//     backgroundColor: 'rgba(255, 255, 255, 0.8)',
+//     opacity: '0.7',
+//     border: '1px solid #eceeef',
+//     padding: '15px',
+//     margin: '-2px 0',
+//     textAlign: 'center',
+//   },
+//   arrow: {
+//     '&:before': {
+//       border: '1px solid #eceeef',
+//     },
+//     color: 'rgba(255, 255, 255, 0.8)',
+//   },
+// })(Tooltip);
 
 export const CategoryItem = ({ category }) => {
   const dispatch = useDispatch();
