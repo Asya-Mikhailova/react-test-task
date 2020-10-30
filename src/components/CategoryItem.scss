@@ -8,13 +8,16 @@
   border: none;
   background-color: $color-primary;
   text-align: left;
+
   &:hover {
-    background-color: $color-accent;
+    background-color: $color-hover;
   }
+
   &:active,
   &:focus {
     outline: none;
   }
+
   &__status-icon {
     width: 25px;
     height: 25px;
@@ -24,22 +27,27 @@
     margin-right: 7px;
     text-align: center;
     line-height: 23px;
+
     &_success {
       color: $color-green;
     }
+
     &_danger {
       color: $color-red;
     }
   }
+
   /*TOOLTIP*/
   &__tooltip {
     position: relative;
     display: inline-block;
+
     &:hover {
       .category__tooltip_tooltiptext {
         visibility: visible;
       }
     }
+
     &_tooltiptext {
       visibility: hidden;
       background-color: $color-white;
@@ -49,14 +57,14 @@
       border-radius: 6px;
       opacity: 0.7;
       border: 1px solid $color-accent;
-
       /* Position the tooltip text - see examples below! */
       position: absolute;
       z-index: 1;
-      width: 300px;
+      width: 380px;
       bottom: 100%;
       left: 50%;
-      margin-left: -110px; /* Use half of the width (120/2 = 60), to center the tooltip */
+      margin-left: -125px; /* Use half of the width (120/2 = 60), to center the tooltip */
+
       &::after {
         content: ' ';
         position: absolute;
@@ -76,6 +84,7 @@
 .fa-info {
   color: $color-grey;
   margin-left: 5px;
+
   &:hover {
     cursor: pointer;
   }

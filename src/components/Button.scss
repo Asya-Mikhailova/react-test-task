@@ -1,25 +1,30 @@
 @import '../styles/_colors.scss';
 
 .btn {
-  background-color: $color-primary;
+  background-color: $color-white;
   border: none;
   border-radius: 3px;
   width: 110px;
   height: 30px;
+
   &:hover {
     cursor: pointer;
-    background-color: $color-hover;
+    background-color: $color-primary;
     border: solid 1px $color-text;
   }
+
   &:active {
     outline: none;
   }
+
   &:focus {
     border: 1px solid $color-text;
   }
+
   &_border {
     border: 1px solid $color-blue;
     border-radius: 3px;
+
     &:focus {
       border: 1px solid $color-text;
     }
