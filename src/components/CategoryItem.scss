@@ -17,7 +17,7 @@
     position: relative;
 
     &::after {
-      background-color: rgba(255, 255, 255, 0.9);
+      background-color: $color-tooltip;
       border-radius: 5px;
       border: 1px solid $color-accent;
       width: 360px;
@@ -31,7 +31,7 @@
     }
 
     &::before {
-      background-color: rgba(255, 255, 255, 0.9);
+      background-color: $color-tooltip;
       border-bottom: 1px solid $color-accent;
       border-right: 1px solid $color-accent;
       content: ' ';
@@ -51,6 +51,7 @@
     &_top {
       &::after {
         content: attr(data-text);
+        font-size: 12px;
         top: 0;
         left: 50%;
         transform: translate(-50%, calc(-100% - 10px));
