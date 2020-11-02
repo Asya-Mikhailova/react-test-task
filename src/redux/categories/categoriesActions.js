@@ -1,16 +1,14 @@
 import axios from 'axios';
-import { createAsynkThunk } from '@reduxjs/toolkit';
 
 export const fetchCategories = () => {
-  return (dispatch) => {
+  return async (dispatch) => {
     dispatch(fetchCategoriesRequest());
-    axios.get('http://localhost:3004/categories').then((response) => {
-      const categories = response.data;
-      setTimeout(() => {
-        //       // to emulate some network delay
-        dispatch(fetchCategoriesSuccess(categories));
-      }, 2000);
-    });
+    const response = await axios.get('http://localhost:3004/categories');
+    const categories = await response.data;
+    setTimeout(() => {
+      //       // to emulate some network delay
+      dispatch(fetchCategoriesSuccess(categories));
+    }, 2000);
   };
 };
 
