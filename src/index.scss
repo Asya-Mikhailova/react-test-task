@@ -1,0 +1,27 @@
+@import '../node_modules/normalize.css/normalize.css';
+@import '../node_modules/font-awesome/scss/font-awesome.scss';
+@import './styles/_fonts.scss';
+@import './styles/_colors.scss';
+
+html {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+  -webkit-box-sizing: inherit;
+  -moz-box-sizing: inherit;
+  box-sizing: inherit;
+}
+
+body {
+  font-family: 'OpenSans';
+  font-size: 14px;
+}
+
+.fa {
+  font-size: 14px;
+}

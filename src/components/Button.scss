@@ -1,0 +1,44 @@
+@import '../styles/_colors.scss';
+
+.button {
+  background-color: $color-white;
+  border: none;
+  border-radius: 3px;
+  width: 110px;
+  height: 30px;
+
+  &:hover {
+    cursor: pointer;
+    background-color: $color-primary;
+    border: solid 1px $color-text;
+  }
+
+  &:active {
+    outline: none;
+  }
+
+  &:focus {
+    border: 1px solid $color-text;
+  }
+
+  &_border {
+    border: 1px solid $color-blue;
+    border-radius: 3px;
+    height: 23px;
+    width: 110px;
+    background-color: $color-white;
+
+    &:hover {
+      background-color: $color-filter-hover;
+      border: 1px solid $color-filter-hborder;
+    }
+
+    &:focus,
+    &:active {
+      background-color: $color-blue;
+      color: $color-white;
+      border: none;
+      outline: none;
+    }
+  }
+}

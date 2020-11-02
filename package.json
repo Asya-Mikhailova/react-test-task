@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@material-ui/core": "^4.11.0",
     "@reduxjs/toolkit": "^1.4.0",
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.5.0",
@@ -10,6 +11,8 @@
     "axios": "^0.20.0",
     "font-awesome": "^4.7.0",
     "json-server": "^0.16.2",
+    "node-sass": "^4.14.1",
+    "normalize.css": "^8.0.1",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-redux": "^7.2.1",
@@ -19,8 +22,7 @@
     "redux-thunk": "^2.3.0"
   },
   "scripts": {
-    "server": "json-server --watch ./db/categories.json --port 3004 ",
-    "start": "react-scripts start",
+    "start": "json-server --watch ./db/categories.json --port 3004 & react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"

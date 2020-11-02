@@ -1,0 +1,108 @@
+@import '../styles/_colors.scss';
+
+.category {
+  display: inline-flex;
+  width: 300px;
+  align-items: center;
+  border: none;
+  border-radius: 3px;
+  background-color: $color-primary;
+  height: 40px;
+  text-align: left;
+  margin-bottom: 10px;
+
+  /*TOOLTIP*/
+
+  &__tooltip {
+    position: relative;
+
+    &::after {
+      background-color: $color-tooltip;
+      border-radius: 5px;
+      border: 1px solid $color-accent;
+      width: 360px;
+      color: $color-text;
+      display: none;
+      margin-top: 3px;
+      padding: 10px;
+      position: absolute;
+      text-align: center;
+      z-index: 1;
+    }
+
+    &::before {
+      background-color: $color-tooltip;
+      border-bottom: 1px solid $color-accent;
+      border-right: 1px solid $color-accent;
+      content: ' ';
+      display: none;
+      margin-top: 3px;
+      position: absolute;
+      width: 10px;
+      height: 10px;
+      z-index: 999;
+    }
+
+    &:hover::after,
+    &:hover::before {
+      display: block;
+    }
+
+    &_top {
+      &::after {
+        content: attr(data-text);
+        font-size: 12px;
+        top: 0;
+        left: 50%;
+        transform: translate(-50%, calc(-100% - 10px));
+        overflow: auto;
+      }
+
+      &::before {
+        top: 0;
+        left: 50%;
+        transform: translate(-50%, calc(-100% - 5px)) rotate(45deg);
+      }
+    }
+  }
+
+  &:hover {
+    background-color: $color-hover;
+    height: 40px;
+  }
+
+  &:active,
+  &:focus {
+    outline: none;
+  }
+
+  &__status-icon {
+    width: 25px;
+    height: 25px;
+    background-color: $color-primary;
+    border: 1px solid $color-accent;
+    border-radius: 5px;
+    margin-right: 7px;
+    text-align: center;
+    line-height: 23px;
+
+    &_success {
+      color: $color-green;
+    }
+
+    &_danger {
+      color: $color-red;
+    }
+  }
+}
+
+/*FONT AWESOME*/
+
+.fa-info {
+  color: $color-grey;
+  margin-left: 5px;
+
+  &:hover {
+    cursor: pointer;
+  }
+}
