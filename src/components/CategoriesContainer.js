@@ -102,13 +102,17 @@ export const CategoriesContainer = () => {
           <p>Filters</p>
           <Button
             className='categories__button_border'
-            name='Approved'
+            name={`Approved  ${
+              categories.filter(FILTER_MAP['Approved']).length
+            }`}
             aria-pressed={'Approved' === filter}
             onClick={() => setFilter('Approved')}
           />
           <Button
             className='categories__button_border'
-            name='Forbidden'
+            name={`Forbidden  ${
+              categories.filter(FILTER_MAP['Forbidden']).length
+            }`}
             aria-pressed={'Forbidden' === filter}
             onClick={() => setFilter('Forbidden')}
           />
