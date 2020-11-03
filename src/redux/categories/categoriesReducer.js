@@ -39,7 +39,7 @@ const reducer = (state = initialState, action) => {
         ...state,
         categories: state.categories.map((category) => ({
           ...category,
-          isSelected: (category.isSelected = false),
+          isSelected: false,
         })),
       };
     case 'APPROVE_ALL':
@@ -47,7 +47,7 @@ const reducer = (state = initialState, action) => {
         ...state,
         categories: state.categories.map((category) => ({
           ...category,
-          isSelected: (category.isSelected = true),
+          isSelected: true,
         })),
       };
     default:

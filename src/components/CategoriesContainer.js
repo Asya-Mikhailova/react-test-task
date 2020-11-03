@@ -1,9 +1,14 @@
 import React, { useEffect, useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { approveAll, fetchCategories, forbidAll } from '../redux';
 
 import { CategoryItem } from './CategoryItem';
 import { Button } from './Button';
+import {
+  loadingSelector,
+  errorSelector,
+  categoriesSelector,
+} from '../redux/selectors/selectors';
 
 import './CategoriesContainer.scss';
 
@@ -13,23 +18,12 @@ const FILTER_MAP = {
   Forbidden: (category) => !category.isSelected,
 };
 
-const FILTER_NAMES = Object.keys(FILTER_MAP);
-
 export const CategoriesContainer = () => {
-  const loading = useSelector((state) => state.categories.loading);
-  const error = useSelector((state) => state.categories.error);
-  const categories = useSelector((state) => state.categories.categories);
+  const loading = useSelector(loadingSelector);
+  const error = useSelector(errorSelector);
+  const categories = useSelector(categoriesSelector);
+  // const categories = useSelector((state) => state.categories.categories);
   const [filter, setFilter] = useState('All');
-
-  const filterList = FILTER_NAMES.map((name) => (
-    <Button
-      key={name}
-      name={name}
-      className='categories__button_border'
-      aria-pressed={name === filter}
-      onClick={() => setFilter(name)}
-    />
-  ));
 
   const dynamicSort = (property) => {
     let sortOrder = 1;
