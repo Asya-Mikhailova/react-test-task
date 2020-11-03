@@ -23,7 +23,7 @@ const reducer = (state = initialState, action) => {
         categories: [],
         error: action.payload,
       };
-    case 'SET_SELECTED':
+    case 'CHANGE_CATEGORY_STATUS':
       return {
         ...state,
         categories: state.categories.map((category) => ({
@@ -34,12 +34,22 @@ const reducer = (state = initialState, action) => {
               : category.isSelected,
         })),
       };
-    // case 'FORBID_ALL_SELECTED':
-    //   return{
-    //     ...state,
-    //     categories: state.categories,
-    //     forbidIsSelected:
-    //   }
+    case 'FORBID_ALL':
+      return {
+        ...state,
+        categories: state.categories.map((category) => ({
+          ...category,
+          isSelected: (category.isSelected = false),
+        })),
+      };
+    case 'APPROVE_ALL':
+      return {
+        ...state,
+        categories: state.categories.map((category) => ({
+          ...category,
+          isSelected: (category.isSelected = true),
+        })),
+      };
     default:
       return state;
   }

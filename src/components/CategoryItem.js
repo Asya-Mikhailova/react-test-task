@@ -1,6 +1,6 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
-import { setIsSelected } from '../redux';
+import { changeCategoryStatus } from '../redux';
 
 import './CategoryItem.scss';
 
@@ -8,7 +8,7 @@ export const CategoryItem = ({ category }) => {
   const dispatch = useDispatch();
 
   const selectCategory = (name) => {
-    dispatch(setIsSelected(name));
+    dispatch(changeCategoryStatus(name));
   };
 
   return (

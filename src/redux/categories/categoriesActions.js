@@ -1,15 +1,16 @@
 import axios from 'axios';
 
-export const fetchCategories = () => {
-  return async (dispatch) => {
-    dispatch(fetchCategoriesRequest());
-    const response = await axios.get('http://localhost:3004/categories');
-    const categories = await response.data;
+export const fetchCategories = () => async (dispatch) => {
+  dispatch(fetchCategoriesRequest());
+  try {
+    const { data } = await axios.get('http://localhost:3004/categories');
     setTimeout(() => {
       //       // to emulate some network delay
-      dispatch(fetchCategoriesSuccess(categories));
+      dispatch(fetchCategoriesSuccess(data));
     }, 2000);
-  };
+  } catch (error) {
+    dispatch(fetchCategoriesFailure(error));
+  }
 };
 
 export const fetchCategoriesRequest = () => {
@@ -32,17 +33,17 @@ export const fetchCategoriesFailure = (error) => {
   };
 };
 
-export const setIsSelected = (name) => ({
-  type: 'SET_SELECTED',
+export const changeCategoryStatus = (name) => ({
+  type: 'CHANGE_CATEGORY_STATUS',
   name,
 });
 
-// export const forbidAllIsSelected = (categories) => ({
-//   type: 'FORBID_ALL_SELECTED',
-//   categories,
-// });
+export const forbidAll = (name) => ({
+  type: 'FORBID_ALL',
+  name,
+});
 
-// export const approveAllIsSelected = (categories) => ({
-//   type: 'APPROVE_ALL_SELECTED',
-//   categories,
-// });
+export const approveAll = (name) => ({
+  type: 'APPROVE_ALL',
+  name,
+});
