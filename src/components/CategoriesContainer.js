@@ -1,11 +1,6 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import {
-  approveAll,
-  fetchCategories,
-  forbidAll,
-  filterCategories,
-} from '../redux';
+import { approveAll, fetchCategories, forbidAll } from '../redux';
 
 import _ from 'lodash';
 
@@ -21,6 +16,28 @@ import {
 
 import './CategoriesContainer.scss';
 
+const dynamicSort = (property) => {
+  let sortOrder = 1;
+  if (property[0] === '-') {
+    sortOrder = -1;
+    property = property.substr(1);
+  }
+
+  return function (a, b) {
+    if (sortOrder === -1) {
+      return b[property].localeCompare(a[property]);
+    } else {
+      return a[property].localeCompare(b[property]);
+    }
+  };
+};
+
+const filterMap = {
+  All: () => true,
+  Approved: (category) => category.isSelected,
+  Forbidden: (category) => !category.isSelected,
+};
+
 export const CategoriesContainer = () => {
   const loading = useSelector(loadingSelector);
   const error = useSelector(errorSelector);
@@ -28,21 +45,7 @@ export const CategoriesContainer = () => {
   const forbiddenCategories = useSelector(forbidFilterSelector);
   const approvedCategories = useSelector(approveFilterSelector);
 
-  const dynamicSort = (property) => {
-    let sortOrder = 1;
-    if (property[0] === '-') {
-      sortOrder = -1;
-      property = property.substr(1);
-    }
-
-    return function (a, b) {
-      if (sortOrder === -1) {
-        return b[property].localeCompare(a[property]);
-      } else {
-        return a[property].localeCompare(b[property]);
-      }
-    };
-  };
+  const [filter, setFilter] = useState('All');
 
   categories.sort(dynamicSort('name'));
 
@@ -53,16 +56,14 @@ export const CategoriesContainer = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const forbidAllSelected = (name) => {
-    dispatch(forbidAll(name));
+  const forbidAllSelected = () => {
+    dispatch(forbidAll());
+    setFilter('All');
   };
 
-  const approveAllSelected = (name) => {
-    dispatch(approveAll(name));
-  };
-
-  const filterSelected = (categories) => {
-    dispatch(filterCategories(categories));
+  const approveAllSelected = () => {
+    dispatch(approveAll());
+    setFilter('All');
   };
 
   if (loading) return <h2>Loading...</h2>;
@@ -72,7 +73,7 @@ export const CategoriesContainer = () => {
     <div className='categories'>
       <div className='categories__scroll-wrapper'>
         <div className='categories__container'>
-          {_.map(categories, (category) => (
+          {_.filter(categories, filterMap[filter]).map((category) => (
             <CategoryItem key={category.name} category={category} />
           ))}
         </div>
@@ -81,14 +82,14 @@ export const CategoriesContainer = () => {
       <div className='categories__footer'>
         <div className='categories__button-container'>
           <Button
-            onClick={() => forbidAllSelected(_.map(categories, 'name'))}
+            onClick={() => forbidAllSelected()}
             className='categories__button'
           >
             <i className='fa fa-simplybuilt categories__button-container__icon_danger' />
             Forbid All
           </Button>
           <Button
-            onClick={() => approveAllSelected(_.map(categories, 'name'))}
+            onClick={() => approveAllSelected()}
             className='categories__button'
           >
             <i className='fa fa-smile-o categories__button-container__icon_success' />
@@ -100,12 +101,12 @@ export const CategoriesContainer = () => {
           <Button
             className='categories__button_border'
             name={`Approved ${approvedCategories.length}`}
-            onClick={() => filterSelected(approvedCategories)}
+            onClick={() => setFilter('Approved')}
           />
           <Button
             className='categories__button_border'
             name={`Forbidden ${forbiddenCategories.length}`}
-            onClick={() => filterSelected(forbiddenCategories)}
+            onClick={() => setFilter('Forbidden')}
           />
         </div>
       </div>

@@ -66,9 +66,12 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         categories: action.payload,
-        // state.categories.filter((category) =>
-        //   action.payload.map((categoryF) => category === categoryF)
-        // ),
+        // categories: state.categories,
+        // filter: state.categories.filter((category) => {
+        //   for (let categoryF of action.payload) {
+        //     if (category === categoryF) return category;
+        //   }
+        // }),
       };
 
     default:

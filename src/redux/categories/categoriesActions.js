@@ -38,14 +38,12 @@ export const changeCategoryStatus = (name) => ({
   name,
 });
 
-export const forbidAll = (name) => ({
+export const forbidAll = () => ({
   type: 'FORBID_ALL',
-  name,
 });
 
-export const approveAll = (name) => ({
+export const approveAll = () => ({
   type: 'APPROVE_ALL',
-  name,
 });
 
 export const filterCategories = (categories) => ({
