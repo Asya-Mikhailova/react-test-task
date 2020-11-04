@@ -1,6 +1,13 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { approveAll, fetchCategories, forbidAll } from '../redux';
+import {
+  approveAll,
+  fetchCategories,
+  forbidAll,
+  filterCategories,
+} from '../redux';
+
+import _ from 'lodash';
 
 import { CategoryItem } from './CategoryItem';
 import { Button } from './Button';
@@ -20,10 +27,6 @@ export const CategoriesContainer = () => {
   const categories = useSelector(categoriesSelector);
   const forbiddenCategories = useSelector(forbidFilterSelector);
   const approvedCategories = useSelector(approveFilterSelector);
-
-  const [filter, setFilter] = useState('All');
-  let isForbidden = false;
-  let isApproved = false;
 
   const dynamicSort = (property) => {
     let sortOrder = 1;
@@ -58,14 +61,8 @@ export const CategoriesContainer = () => {
     dispatch(approveAll(name));
   };
 
-  const toggleForbidden = () => {
-    isApproved = false;
-    isForbidden = !isForbidden;
-  };
-
-  const toggleApproved = () => {
-    isForbidden = false;
-    isApproved = !isApproved;
+  const filterSelected = (categories) => {
+    dispatch(filterCategories(categories));
   };
 
   if (loading) return <h2>Loading...</h2>;
@@ -75,35 +72,23 @@ export const CategoriesContainer = () => {
     <div className='categories'>
       <div className='categories__scroll-wrapper'>
         <div className='categories__container'>
-          {isForbidden
-            ? forbiddenCategories.map((category) => (
-                <CategoryItem key={category.name} category={category} />
-              ))
-            : isApproved
-            ? approvedCategories.map((category) => (
-                <CategoryItem key={category.name} category={category} />
-              ))
-            : categories.map((category) => (
-                <CategoryItem key={category.name} category={category} />
-              ))}
+          {_.map(categories, (category) => (
+            <CategoryItem key={category.name} category={category} />
+          ))}
         </div>
       </div>
 
       <div className='categories__footer'>
         <div className='categories__button-container'>
           <Button
-            onClick={() =>
-              forbidAllSelected(categories.map((category) => category.name))
-            }
+            onClick={() => forbidAllSelected(_.map(categories, 'name'))}
             className='categories__button'
           >
             <i className='fa fa-simplybuilt categories__button-container__icon_danger' />
             Forbid All
           </Button>
           <Button
-            onClick={() =>
-              approveAllSelected(categories.map((category) => category.name))
-            }
+            onClick={() => approveAllSelected(_.map(categories, 'name'))}
             className='categories__button'
           >
             <i className='fa fa-smile-o categories__button-container__icon_success' />
@@ -115,12 +100,12 @@ export const CategoriesContainer = () => {
           <Button
             className='categories__button_border'
             name={`Approved ${approvedCategories.length}`}
-            onClick={() => toggleApproved()}
+            onClick={() => filterSelected(approvedCategories)}
           />
           <Button
             className='categories__button_border'
             name={`Forbidden ${forbiddenCategories.length}`}
-            onClick={() => toggleForbidden()}
+            onClick={() => filterSelected(forbiddenCategories)}
           />
         </div>
       </div>

@@ -47,3 +47,8 @@ export const approveAll = (name) => ({
   type: 'APPROVE_ALL',
   name,
 });
+
+export const filterCategories = (categories) => ({
+  type: 'FILTER_CATEGORIES',
+  payload: categories,
+});
