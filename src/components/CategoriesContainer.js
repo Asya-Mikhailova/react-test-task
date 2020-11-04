@@ -8,22 +8,22 @@ import {
   loadingSelector,
   errorSelector,
   categoriesSelector,
+  forbidFilterSelector,
+  approveFilterSelector,
 } from '../redux/selectors/selectors';
 
 import './CategoriesContainer.scss';
-
-const FILTER_MAP = {
-  All: () => true,
-  Approved: (category) => category.isSelected,
-  Forbidden: (category) => !category.isSelected,
-};
 
 export const CategoriesContainer = () => {
   const loading = useSelector(loadingSelector);
   const error = useSelector(errorSelector);
   const categories = useSelector(categoriesSelector);
-  // const categories = useSelector((state) => state.categories.categories);
+  const forbiddenCategories = useSelector(forbidFilterSelector);
+  const approvedCategories = useSelector(approveFilterSelector);
+
   const [filter, setFilter] = useState('All');
+  let isForbidden = false;
+  let isApproved = false;
 
   const dynamicSort = (property) => {
     let sortOrder = 1;
@@ -58,6 +58,16 @@ export const CategoriesContainer = () => {
     dispatch(approveAll(name));
   };
 
+  const toggleForbidden = () => {
+    isApproved = false;
+    isForbidden = !isForbidden;
+  };
+
+  const toggleApproved = () => {
+    isForbidden = false;
+    isApproved = !isApproved;
+  };
+
   if (loading) return <h2>Loading...</h2>;
   if (error) return <h2>{error}</h2>;
 
@@ -65,9 +75,17 @@ export const CategoriesContainer = () => {
     <div className='categories'>
       <div className='categories__scroll-wrapper'>
         <div className='categories__container'>
-          {categories.filter(FILTER_MAP[filter]).map((category) => (
-            <CategoryItem key={category.name} category={category} />
-          ))}
+          {isForbidden
+            ? forbiddenCategories.map((category) => (
+                <CategoryItem key={category.name} category={category} />
+              ))
+            : isApproved
+            ? approvedCategories.map((category) => (
+                <CategoryItem key={category.name} category={category} />
+              ))
+            : categories.map((category) => (
+                <CategoryItem key={category.name} category={category} />
+              ))}
         </div>
       </div>
 
@@ -96,19 +114,13 @@ export const CategoriesContainer = () => {
           <p>Filters</p>
           <Button
             className='categories__button_border'
-            name={`Approved  ${
-              categories.filter(FILTER_MAP['Approved']).length
-            }`}
-            aria-pressed={'Approved' === filter}
-            onClick={() => setFilter('Approved')}
+            name={`Approved ${approvedCategories.length}`}
+            onClick={() => toggleApproved()}
           />
           <Button
             className='categories__button_border'
-            name={`Forbidden  ${
-              categories.filter(FILTER_MAP['Forbidden']).length
-            }`}
-            aria-pressed={'Forbidden' === filter}
-            onClick={() => setFilter('Forbidden')}
+            name={`Forbidden ${forbiddenCategories.length}`}
+            onClick={() => toggleForbidden()}
           />
         </div>
       </div>
