@@ -45,8 +45,3 @@ export const forbidAll = () => ({
 export const approveAll = () => ({
   type: 'APPROVE_ALL',
 });
-
-export const filterCategories = (categories) => ({
-  type: 'FILTER_CATEGORIES',
-  payload: categories,
-});

@@ -62,18 +62,6 @@ const reducer = (state = initialState, action) => {
         })),
       };
 
-    case 'FILTER_CATEGORIES':
-      return {
-        ...state,
-        categories: action.payload,
-        // categories: state.categories,
-        // filter: state.categories.filter((category) => {
-        //   for (let categoryF of action.payload) {
-        //     if (category === categoryF) return category;
-        //   }
-        // }),
-      };
-
     default:
       return state;
   }
