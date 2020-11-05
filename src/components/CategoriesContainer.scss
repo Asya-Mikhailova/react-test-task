@@ -82,6 +82,12 @@
         border: none;
         outline: none;
       }
+      &_active {
+        background-color: $color-blue;
+        color: $color-white;
+        border: none;
+        outline: none;
+      }
     }
   }
 

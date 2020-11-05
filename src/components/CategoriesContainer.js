@@ -46,6 +46,8 @@ export const CategoriesContainer = () => {
   const approvedCategories = useSelector(approveFilterSelector);
 
   const [filter, setFilter] = useState('All');
+  const [approvedBtn, setApprovedBtnState] = useState(false);
+  const [forbiddenBtn, setForbiddenBtnState] = useState(false);
 
   categories.sort(dynamicSort('name'));
 
@@ -56,14 +58,38 @@ export const CategoriesContainer = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  const switchFiltersOff = () => {
+    if (filter !== 'All') {
+      setFilter('All');
+    }
+    if (approvedBtn !== false) {
+      setApprovedBtnState(false);
+    }
+    if (forbiddenBtn !== false) {
+      setForbiddenBtnState(false);
+    }
+  };
+
   const forbidAllSelected = () => {
     dispatch(forbidAll());
-    setFilter('All');
+    switchFiltersOff();
   };
 
   const approveAllSelected = () => {
     dispatch(approveAll());
-    setFilter('All');
+    switchFiltersOff();
+  };
+
+  const filterApproved = (filterState, btnState) => {
+    setFilter(filterState);
+    setForbiddenBtnState(false);
+    setApprovedBtnState(btnState);
+  };
+
+  const filterForbidden = (filterState, btnState) => {
+    setFilter(filterState);
+    setApprovedBtnState(false);
+    setForbiddenBtnState(btnState);
   };
 
   if (loading) return <h2>Loading...</h2>;
@@ -99,14 +125,18 @@ export const CategoriesContainer = () => {
         <div className='categories__filter-container'>
           <p>Filters</p>
           <Button
-            className='categories__button_border'
+            className={`categories__button_border categories__button_border${
+              approvedBtn ? '_active' : ''
+            }`}
             name={`Approved ${approvedCategories.length}`}
-            onClick={() => setFilter('Approved')}
+            onClick={() => filterApproved('Approved', true)}
           />
           <Button
-            className='categories__button_border'
+            className={`categories__button_border categories__button_border${
+              forbiddenBtn ? '_active' : ''
+            }`}
             name={`Forbidden ${forbiddenCategories.length}`}
-            onClick={() => setFilter('Forbidden')}
+            onClick={() => filterForbidden('Forbidden', true)}
           />
         </div>
       </div>

@@ -35,6 +35,7 @@ const reducer = (state = initialState, action) => {
     case 'CHANGE_CATEGORY_STATUS':
       return {
         ...state,
+        btnStatus: action.payload,
         categories: _.map(state.categories, (category) => ({
           ...category,
           isSelected:
