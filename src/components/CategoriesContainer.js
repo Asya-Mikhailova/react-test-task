@@ -108,6 +108,7 @@ export const CategoriesContainer = () => {
       <div className='categories__footer'>
         <div className='categories__button-container'>
           <Button
+            disabled={forbiddenCategories.length === 22 ? true : false}
             onClick={() => forbidAllSelected()}
             className='categories__button'
           >
@@ -115,6 +116,7 @@ export const CategoriesContainer = () => {
             Forbid All
           </Button>
           <Button
+            disabled={approvedCategories.length === 22 ? true : false}
             onClick={() => approveAllSelected()}
             className='categories__button'
           >
