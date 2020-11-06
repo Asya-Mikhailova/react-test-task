@@ -46,8 +46,8 @@ export const CategoriesContainer = () => {
   const approvedCategories = useSelector(approveFilterSelector);
 
   const [filter, setFilter] = useState('All');
-  let forbiddenBtn = false;
-  let approvedBtn = false;
+  const [forbiddenBtn, setForbiddenBtnState] = useState(false);
+  const [approvedBtn, setApprovedBtnState] = useState(false);
 
   categories.sort(dynamicSort('name'));
 
@@ -59,48 +59,38 @@ export const CategoriesContainer = () => {
   }, []);
 
   const switchFiltersOff = () => {
-    if (filter !== 'All') {
-      setFilter('All');
-    }
-    if (approvedBtn !== false) {
-      approvedBtn = false;
-    }
-    if (forbiddenBtn !== false) {
-      forbiddenBtn = false;
-    }
+    setFilter('All');
+    setForbiddenBtnState(false);
+    setApprovedBtnState(false);
   };
 
   const forbidAllSelected = () => {
     dispatch(forbidAll());
-    switchFiltersOff();
   };
 
   const approveAllSelected = () => {
     dispatch(approveAll());
-    switchFiltersOff();
   };
 
   const filterApproved = (filterState) => {
-    approvedBtn = !approvedBtn;
-    if (approvedBtn === true) {
+    if (!approvedBtn) {
+      setApprovedBtnState(true);
       setFilter(filterState);
-      forbiddenBtn = false;
+      setForbiddenBtnState(false);
     } else {
       switchFiltersOff();
     }
   };
 
   const filterForbidden = (filterState) => {
-    forbiddenBtn = !forbiddenBtn;
-    if (forbiddenBtn === true) {
+    if (!forbiddenBtn) {
+      setForbiddenBtnState(true);
       setFilter(filterState);
-      approvedBtn = false;
+      setApprovedBtnState(false);
     } else {
       switchFiltersOff();
     }
   };
-
-  console.log(forbiddenBtn);
 
   if (loading) return <h2>Loading...</h2>;
   if (error) return <h2>{error}</h2>;
@@ -118,7 +108,7 @@ export const CategoriesContainer = () => {
       <div className='categories__footer'>
         <div className='categories__button-container'>
           <Button
-            disabled={forbiddenCategories.length === 22 ? true : false}
+            disabled={!approvedCategories.length}
             onClick={() => forbidAllSelected()}
             className='categories__button'
           >
@@ -126,7 +116,7 @@ export const CategoriesContainer = () => {
             Forbid All
           </Button>
           <Button
-            disabled={approvedCategories.length === 22 ? true : false}
+            disabled={!forbiddenCategories.length}
             onClick={() => approveAllSelected()}
             className='categories__button'
           >
@@ -141,14 +131,22 @@ export const CategoriesContainer = () => {
               filter === 'Approved' ? '_active' : ''
             }`}
             name={`Approved ${approvedCategories.length}`}
-            onClick={() => filterApproved('Approved', true)}
+            onClick={() => filterApproved('Approved')}
           />
-          <Button
+          {/* <Button
             className={`categories__button_border categories__button_border${
-              filter === 'Forbidden' ? '_active' : ''
+              forbiddenBtn ? '_active' : ''
             }`}
             name={`Forbidden ${forbiddenCategories.length}`}
-            onClick={() => filterForbidden('Forbidden')}
+            onClick={(e) => filterForbidden('Forbidden')}
+          /> */}
+
+          <Button
+            className={`categories__button_border categories__button_border${
+              forbiddenBtn ? '_active' : ''
+            }`}
+            name={`Forbidden ${forbiddenCategories.length}`}
+            onClick={(e) => filterForbidden('Forbidden')}
           />
         </div>
       </div>

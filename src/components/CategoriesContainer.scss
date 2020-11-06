@@ -73,20 +73,25 @@
       &:hover {
         background-color: $color-filter-hover;
         border: 1px solid $color-filter-hborder;
+        color: $color-text;
       }
 
       &:focus,
       &:active {
-        background-color: $color-blue;
-        color: $color-white;
-        border: none;
+        border: 1px solid $color-blue;
         outline: none;
       }
+
       &_active {
         background-color: $color-blue;
         color: $color-white;
         border: none;
         outline: none;
+        &:hover {
+          border: 1px solid $color-text;
+          background-color: $color-blue;
+          color: $color-white;
+        }
       }
     }
   }
