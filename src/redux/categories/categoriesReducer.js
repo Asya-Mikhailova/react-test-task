@@ -1,7 +1,10 @@
+import _ from 'lodash';
+
 const initialState = {
   loading: false,
   categories: [],
   error: '',
+  isSelected: false,
 };
 
 const reducer = (state = initialState, action) => {
@@ -11,22 +14,29 @@ const reducer = (state = initialState, action) => {
         ...state,
         loading: true,
       };
+
     case 'FETCH_CATEGORIES_SUCCESS':
       return {
         loading: false,
         categories: action.payload,
         error: '',
+        isSelected: _.map(action.payload, (category) => {
+          category.isSelected = false;
+        }),
       };
+
     case 'FETCH_CATEGORIES_FAILURE':
       return {
         loading: false,
         categories: [],
         error: action.payload,
       };
-    case 'SET_SELECTED':
+
+    case 'CHANGE_CATEGORY_STATUS':
       return {
         ...state,
-        categories: state.categories.map((category) => ({
+        btnStatus: action.payload,
+        categories: _.map(state.categories, (category) => ({
           ...category,
           isSelected:
             category.name === action.name
@@ -34,12 +44,25 @@ const reducer = (state = initialState, action) => {
               : category.isSelected,
         })),
       };
-    // case 'FORBID_ALL_SELECTED':
-    //   return{
-    //     ...state,
-    //     categories: state.categories,
-    //     forbidIsSelected:
-    //   }
+
+    case 'FORBID_ALL':
+      return {
+        ...state,
+        categories: _.map(state.categories, (category) => ({
+          ...category,
+          isSelected: false,
+        })),
+      };
+
+    case 'APPROVE_ALL':
+      return {
+        ...state,
+        categories: _.map(state.categories, (category) => ({
+          ...category,
+          isSelected: true,
+        })),
+      };
+
     default:
       return state;
   }

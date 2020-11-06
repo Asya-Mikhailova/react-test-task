@@ -1,16 +1,16 @@
-export const fetchCategories = () => {
-  return (dispatch) => {
-    dispatch(fetchCategoriesRequest());
-    fetch('http://localhost:3004/categories')
-      .then((response) => response.json())
-      .then((response) => {
-        const categories = response;
-        setTimeout(() => {
-          //       // to emulate some network delay
-          dispatch(fetchCategoriesSuccess(categories));
-        }, 2000);
-      });
-  };
+import axios from 'axios';
+
+export const fetchCategories = () => async (dispatch) => {
+  dispatch(fetchCategoriesRequest());
+  try {
+    const { data } = await axios.get('http://localhost:3004/categories');
+    setTimeout(() => {
+      //       // to emulate some network delay
+      dispatch(fetchCategoriesSuccess(data));
+    }, 2000);
+  } catch (error) {
+    dispatch(fetchCategoriesFailure(error));
+  }
 };
 
 export const fetchCategoriesRequest = () => {
@@ -33,17 +33,15 @@ export const fetchCategoriesFailure = (error) => {
   };
 };
 
-export const setIsSelected = (name) => ({
-  type: 'SET_SELECTED',
+export const changeCategoryStatus = (name) => ({
+  type: 'CHANGE_CATEGORY_STATUS',
   name,
 });
 
-// export const forbidAllIsSelected = (categories) => ({
-//   type: 'FORBID_ALL_SELECTED',
-//   categories,
-// });
+export const forbidAll = () => ({
+  type: 'FORBID_ALL',
+});
 
-// export const approveAllIsSelected = (categories) => ({
-//   type: 'APPROVE_ALL_SELECTED',
-//   categories,
-// });
+export const approveAll = () => ({
+  type: 'APPROVE_ALL',
+});
