@@ -133,20 +133,12 @@ export const CategoriesContainer = () => {
             name={`Approved ${approvedCategories.length}`}
             onClick={() => filterApproved('Approved')}
           />
-          {/* <Button
-            className={`categories__button_border categories__button_border${
-              forbiddenBtn ? '_active' : ''
-            }`}
-            name={`Forbidden ${forbiddenCategories.length}`}
-            onClick={(e) => filterForbidden('Forbidden')}
-          /> */}
-
           <Button
             className={`categories__button_border categories__button_border${
               forbiddenBtn ? '_active' : ''
             }`}
             name={`Forbidden ${forbiddenCategories.length}`}
-            onClick={(e) => filterForbidden('Forbidden')}
+            onClick={() => filterForbidden('Forbidden')}
           />
         </div>
       </div>
