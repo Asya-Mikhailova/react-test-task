@@ -4,7 +4,6 @@ const initialState = {
   loading: false,
   categories: [],
   error: '',
-  isSelected: false,
 };
 
 const reducer = (state = initialState, action) => {
