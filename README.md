@@ -1,5 +1,27 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+## To Start The ProjectFollow the steps:
+
+## Install dependencies
+
+```
+npm install
+```
+
+## Usage
+
+Start the REST API server (JSON Server):
+
+```
+node server.js
+```
+
+Then, start the React development server:
+
+```
+npm start
+```
+
 ## Available Scripts
 
 In the project directory, you can run:
