@@ -6,13 +6,14 @@ import _ from 'lodash';
 
 import { CategoryItem } from './CategoryItem';
 import { Button } from './Button';
+import { ProfilesContainer } from './ProfilesContainer';
 import {
   loadingSelector,
   errorSelector,
   categoriesSelector,
   forbidFilterSelector,
   approveFilterSelector,
-} from '../redux/selectors/selectors';
+} from '../redux/categories/selectors';
 
 import './CategoriesContainer.scss';
 
@@ -97,6 +98,7 @@ export const CategoriesContainer = () => {
 
   return (
     <div className='categories'>
+      <ProfilesContainer />
       <div className='categories__scroll-wrapper'>
         <div className='categories__container'>
           {_.filter(categories, filterMap[filter]).map((category) => (

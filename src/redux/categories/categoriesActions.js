@@ -6,7 +6,7 @@ export const fetchCategories = () => async (dispatch) => {
     const { data } = await axios.get('http://localhost:3004/categories');
     setTimeout(() => {
       //       // to emulate some network delay
-      dispatch(fetchCategoriesSuccess(data));
+      dispatch(fetchCategoriesSuccess(data.categories));
     }, 2000);
   } catch (error) {
     dispatch(fetchCategoriesFailure(error));

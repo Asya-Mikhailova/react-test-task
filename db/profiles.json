@@ -1,0 +1,39 @@
+{
+    "profiles": [
+        {
+            "id": "5ce075ab-849b-4f5d-a792-a672d4abd08e",
+            "name": "Default",
+            "description": "For new and unassigned devices",
+            "categories": [
+                {
+                    "name": "TV shows"
+                },
+                {
+                    "name": "Architecture"
+                },
+                {
+                    "name": "Weapons"
+                }
+            ]
+        },
+        {
+            "id": "f6bfb40c-b4f8-47b2-b3da-b1c4eab4871d",
+            "name": "Employees",
+            "description": "Trusted users",
+            "categories": [
+                {
+                    "name": "TV shows"
+                },
+                {
+                    "name": "Games"
+                },
+                {
+                    "name": "Art"
+                },
+                {
+                    "name": "Hats"
+                }
+            ]
+        }
+    ]
+}
