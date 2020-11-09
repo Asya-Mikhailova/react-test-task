@@ -18,9 +18,9 @@ const profilesReducer = (state = initialState, action) => {
     case 'FETCH_PROFILES_SUCCESS':
       return {
         loading: false,
-        profiles: action.payload.profiles,
+        profiles: action.payload,
         error: '',
-        isSelected: action.payload.profiles.map((profile) => {
+        isSelected: action.payload.map((profile) => {
           return profile.categories.map(
             (category) => (category.isSelected = true)
           );

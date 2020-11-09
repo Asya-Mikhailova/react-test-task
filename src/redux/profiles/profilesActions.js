@@ -4,7 +4,7 @@ export const fetchProfiles = () => async (dispatch) => {
   dispatch(fetchProfilesRequest());
   try {
     const { data } = await axios.get('http://localhost:3004/profiles');
-    dispatch(fetchProfilesSuccess(data));
+    dispatch(fetchProfilesSuccess(data.profiles));
   } catch (error) {
     dispatch(fetchProfilesFailure(error));
   }

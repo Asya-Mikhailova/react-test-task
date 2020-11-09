@@ -17,9 +17,9 @@ const reducer = (state = initialState, action) => {
     case 'FETCH_CATEGORIES_SUCCESS':
       return {
         loading: false,
-        categories: action.payload.categories,
+        categories: action.payload,
         error: '',
-        isSelected: _.map(action.payload.categories, (category) => {
+        isSelected: _.map(action.payload, (category) => {
           category.isSelected = false;
         }),
       };
