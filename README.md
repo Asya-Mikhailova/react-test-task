@@ -4,23 +4,18 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 ## Install dependencies
 
-```
+~~~
 npm install
-```
+~~~
 
 ## Usage
 
-Start the REST API server (JSON Server):
+Start the REST API server together with React development server:
 
-```
-node server.js
-```
-
-Then, start the React development server:
-
-```
+~~~
 npm start
-```
+~~~
+
 
 ## Available Scripts
 
