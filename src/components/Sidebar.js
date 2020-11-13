@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import _ from 'lodash';
 import { fetchProfiles } from '../redux';
 import { useDispatch, useSelector } from 'react-redux';
 import {
@@ -8,7 +9,11 @@ import {
   errorSelector,
 } from '../redux/profiles/profilesSelectors';
 
-export const ProfilesContainer = () => {
+import {ProfilesItem} from "./ProfilesItem";
+
+import './Sidebar.scss';
+
+export const Sidebar = () => {
   const loading = useSelector(loadingSelector);
   const error = useSelector(errorSelector);
   const profiles = useSelector(profilesSelector);
@@ -21,5 +26,12 @@ export const ProfilesContainer = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  return <h1>PROFILE IS WORKING</h1>;
+  return (
+      <div className="profiles">
+        { _.map(profiles, (profile)=>(
+        <ProfilesItem className="profiles__profile" key={profile.id} profile={profile}/>
+        ))}
+
+      </div>
+  );
 };

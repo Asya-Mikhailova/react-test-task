@@ -1,0 +1,20 @@
+@import '../styles/_colors.scss';
+
+.profile-item{
+  width: 250px;
+  padding: 10px;
+  background: $color-sidebar;
+  border:none;
+  border-radius: 6px;
+  color: $color-text;
+  margin-bottom: 20px;
+  text-align: left;
+  line-height: 14px;
+
+  &__description{
+    display: block;
+    width: 80%;
+
+
+  }
+}

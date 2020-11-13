@@ -1,9 +1,10 @@
 @import '../styles/_colors.scss';
 
 .categories {
-  margin: 0 auto;
+  margin: 10px auto;
   background-color: $color-primary;
   text-align: center;
+  width: 1100px;
 
   &__scroll-wrapper {
     height: 300px;
