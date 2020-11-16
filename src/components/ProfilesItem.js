@@ -7,15 +7,10 @@ import {NavLink, BrowserRouter as Router} from "react-router-dom";
 export const ProfilesItem = ({profile, className})=>{
 
 
-
-
     return(
-        <Router>
-            <NavLink exact to={`/categories/${profile.id}`} className={className} activeClassName="active">
+        <NavLink exact to={`/categories/${profile.id}`} className={className} activeClassName="active">
                     <h3>{profile.name}</h3>
                     <p className="profile-item__description">{profile.description}</p>
-            </NavLink>
-        </Router>
-
+        </NavLink>
         )
 }
