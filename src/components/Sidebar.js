@@ -4,12 +4,11 @@ import {ProfilesItem} from "./ProfilesItem";
 import './Sidebar.scss';
 
 
-export const Sidebar = ({profiles}) => {
-  return (
+export const Sidebar = ({profiles}) => (
       <div className="profiles">
         { _.map(profiles, (profile)=>(
         <ProfilesItem className="profile-item" key={profile.id} profile={profile}/>
         ))}
       </div>
   );
-};
+
