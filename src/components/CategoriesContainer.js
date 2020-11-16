@@ -6,7 +6,7 @@ import _ from 'lodash';
 
 import { CategoryItem } from './CategoryItem';
 import { Button } from './Button';
-import { ProfilesContainer } from './ProfilesContainer';
+import { Sidebar } from './Sidebar';
 import {
   loadingSelector,
   errorSelector,
@@ -98,7 +98,6 @@ export const CategoriesContainer = () => {
 
   return (
     <div className='categories'>
-      <ProfilesContainer />
       <div className='categories__scroll-wrapper'>
         <div className='categories__container'>
           {_.filter(categories, filterMap[filter]).map((category) => (
@@ -106,6 +105,7 @@ export const CategoriesContainer = () => {
           ))}
         </div>
       </div>
+
 
       <div className='categories__footer'>
         <div className='categories__button-container'>
