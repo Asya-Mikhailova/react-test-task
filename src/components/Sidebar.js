@@ -19,6 +19,7 @@ export const Sidebar = () => {
   const profiles = useSelector(profilesSelector);
   const approvedProfileCategories = useSelector(approvedProfilesSelector);
 
+
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -29,9 +30,8 @@ export const Sidebar = () => {
   return (
       <div className="profiles">
         { _.map(profiles, (profile)=>(
-        <ProfilesItem className="profiles__profile" key={profile.id} profile={profile}/>
+        <ProfilesItem className="profile-item" key={profile.id} profile={profile}/>
         ))}
-
       </div>
   );
 };

@@ -1,6 +1,8 @@
 @import '../styles/_colors.scss';
 
 .profile-item{
+  display: block;
+  text-decoration: none;
   width: 250px;
   padding: 10px;
   background: $color-sidebar;
@@ -11,10 +13,21 @@
   text-align: left;
   line-height: 14px;
 
+  &:hover{
+    cursor:pointer;
+    background: $color-green;
+    color: $color-white;
+  }
+
   &__description{
     display: block;
     width: 80%;
-
-
+  }
+  &.active{
+    background: $color-green;
+    color: $color-white;
   }
 }
+
+
+

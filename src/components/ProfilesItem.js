@@ -1,15 +1,21 @@
 import React from 'react';
-import _ from 'lodash';
 
 import './ProfilesItem.scss'
+import {NavLink, BrowserRouter as Router} from "react-router-dom";
+
+
+export const ProfilesItem = ({profile, className})=>{
 
 
 
-export const ProfilesItem = ({profile})=>{
+
     return(
-        <div className="profile-item">
-            <h3>{profile.name}</h3>
-            <p className="profile-item__description">{profile.description}</p>
-        </div>
+        <Router>
+            <NavLink exact to={`/categories/${profile.id}`} className={className} activeClassName="active">
+                    <h3>{profile.name}</h3>
+                    <p className="profile-item__description">{profile.description}</p>
+            </NavLink>
+        </Router>
+
         )
 }
