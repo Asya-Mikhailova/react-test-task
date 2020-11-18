@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { approveAll, fetchCategories, forbidAll } from '../redux';
+import {useParams} from 'react-router-dom';
 
 import _ from 'lodash';
 
 import { CategoryItem } from './CategoryItem';
 import { Button } from './Button';
-import { Sidebar } from './Sidebar';
 import {
   loadingSelector,
   errorSelector,
@@ -14,6 +14,8 @@ import {
   forbidFilterSelector,
   approveFilterSelector,
 } from '../redux/categories/selectors';
+
+import {profilesSelector} from "../redux/profiles/profilesSelectors";
 
 import './CategoriesContainer.scss';
 
@@ -46,9 +48,32 @@ export const CategoriesContainer = () => {
   const forbiddenCategories = useSelector(forbidFilterSelector);
   const approvedCategories = useSelector(approveFilterSelector);
 
+  const profiles = useSelector(profilesSelector);
+
+
   const [filter, setFilter] = useState('All');
   const [forbiddenBtn, setForbiddenBtnState] = useState(false);
   const [approvedBtn, setApprovedBtnState] = useState(false);
+  const {id} = useParams();
+
+  let activeProfile;
+  let profileCategories;
+
+  if(id){
+    const activeProfileFilter= profiles.filter(profile=>{ return profile.id === id});
+    activeProfile = activeProfileFilter[0];
+    profileCategories = activeProfile.categories;
+    for(let i =0; i<categories.length; i++){
+      for(let j =0; j<profileCategories.length; j++){
+        if(categories[i].name === profileCategories[j].name){
+          categories[i].isSelected =true;
+          approvedCategories.push(categories[i]);
+        }
+      }
+    }
+  }
+
+
 
   categories.sort(dynamicSort('name'));
 
