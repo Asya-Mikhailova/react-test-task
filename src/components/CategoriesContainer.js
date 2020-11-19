@@ -15,7 +15,12 @@ import {
   approveFilterSelector,
 } from '../redux/categories/selectors';
 
-import {profilesSelector} from "../redux/profiles/profilesSelectors";
+import {
+  profilesSelector,
+  activeProfileSelector,
+  approvedProfileCategoriesSelector,
+  forbiddenProfileCategoriesSelector
+} from "../redux/profiles/profilesSelectors";
 
 import './CategoriesContainer.scss';
 
@@ -42,37 +47,27 @@ const filterMap = {
 };
 
 export const CategoriesContainer = () => {
+  const {id} = useParams();
+
   const loading = useSelector(loadingSelector);
   const error = useSelector(errorSelector);
-  const categories = useSelector(categoriesSelector);
+  let categories = useSelector(categoriesSelector);
   const forbiddenCategories = useSelector(forbidFilterSelector);
   const approvedCategories = useSelector(approveFilterSelector);
 
+
   const profiles = useSelector(profilesSelector);
+  const activeProfile = useSelector(state=>activeProfileSelector(state, id));
+  const approvedProfileCategories=useSelector(state =>approvedProfileCategoriesSelector(state, id));
+  const forbiddenProfileCategories = useSelector(state=> forbiddenProfileCategoriesSelector(state, id))
+
+  approvedProfileCategories.map(category=> category.isSelected = true);
+  categories = [...approvedProfileCategories,...forbiddenProfileCategories]
 
 
   const [filter, setFilter] = useState('All');
   const [forbiddenBtn, setForbiddenBtnState] = useState(false);
   const [approvedBtn, setApprovedBtnState] = useState(false);
-  const {id} = useParams();
-
-  let activeProfile;
-  let profileCategories;
-
-  if(id){
-    const activeProfileFilter= profiles.filter(profile=>{ return profile.id === id});
-    activeProfile = activeProfileFilter[0];
-    profileCategories = activeProfile.categories;
-    for(let i =0; i<categories.length; i++){
-      for(let j =0; j<profileCategories.length; j++){
-        if(categories[i].name === profileCategories[j].name){
-          categories[i].isSelected =true;
-          approvedCategories.push(categories[i]);
-        }
-      }
-    }
-  }
-
 
 
   categories.sort(dynamicSort('name'));
@@ -157,14 +152,14 @@ export const CategoriesContainer = () => {
             className={`categories__button_border categories__button_border${
               filter === 'Approved' ? '_active' : ''
             }`}
-            name={`Approved ${approvedCategories.length}`}
+            name={`Approved ${approvedProfileCategories.length}`}
             onClick={() => filterApproved('Approved')}
           />
           <Button
             className={`categories__button_border categories__button_border${
               forbiddenBtn ? '_active' : ''
             }`}
-            name={`Forbidden ${forbiddenCategories.length}`}
+            name={`Forbidden ${forbiddenProfileCategories.length}`}
             onClick={() => filterForbidden('Forbidden')}
           />
         </div>

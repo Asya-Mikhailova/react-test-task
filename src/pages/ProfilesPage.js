@@ -11,12 +11,14 @@ export const ProfilesPage = () => {
     const profiles = useSelector(profilesSelector);
 
 
+
     const dispatch = useDispatch();
 
     useEffect(() => {
         dispatch(fetchProfiles());
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
+
 
     return (
         <React.Fragment>
