@@ -1,21 +1,27 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
-import { changeCategoryStatus } from '../redux';
+import {changeCategoryStatus, changeProfileCategoryStatus} from '../redux';
+
 
 import './CategoryItem.scss';
+import {useParams} from "react-router-dom";
 
-export const CategoryItem = ({ category }) => {
+export const CategoryItem = ({ category}) => {
   const dispatch = useDispatch();
+  const {id} = useParams();
 
-  const selectCategory = (name) => {
-    dispatch(changeCategoryStatus(name));
+  const selectCategory = () => {
+    dispatch(changeCategoryStatus(category.name));
+    dispatch(changeProfileCategoryStatus(category.name, id));
   };
+
+
 
   return (
     <button
       key={category.name}
       className='category category__tooltip category__tooltip_top'
-      onClick={() => selectCategory(category.name)}
+      onClick={selectCategory}
       data-text={category.description}
     >
       <div className='category__status-icon'>

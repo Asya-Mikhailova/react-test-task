@@ -22,7 +22,7 @@ export const ProfilesPage = () => {
 
     return (
         <React.Fragment>
-                <Sidebar profiles={profiles}/>
+                <Sidebar profiles={profiles} />
                 <Switch>
                     <Route exact path="/" component={CategoriesContainer}/>
                     <Route exact path="/categories/:id" component={CategoriesContainer}/>

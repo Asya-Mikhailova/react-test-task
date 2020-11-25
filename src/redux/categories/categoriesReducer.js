@@ -47,7 +47,7 @@ const reducer = (state = initialState, action) => {
     case 'FORBID_ALL':
       return {
         ...state,
-        categories: _.map(state.categories, (category) => ({
+        categories: _.map(action.payload, (category) => ({
           ...category,
           isSelected: false,
         })),

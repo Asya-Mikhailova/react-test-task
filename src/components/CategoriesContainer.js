@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { approveAll, fetchCategories, forbidAll } from '../redux';
+import {approveAll, approveAllPC, fetchCategories, forbidAll, forbidAllPC} from '../redux';
 import {useParams} from 'react-router-dom';
 
 import _ from 'lodash';
@@ -10,14 +10,9 @@ import { Button } from './Button';
 import {
   loadingSelector,
   errorSelector,
-  categoriesSelector,
-  forbidFilterSelector,
-  approveFilterSelector,
 } from '../redux/categories/selectors';
 
 import {
-  profilesSelector,
-  activeProfileSelector,
   approvedProfileCategoriesSelector,
   forbiddenProfileCategoriesSelector
 } from "../redux/profiles/profilesSelectors";
@@ -51,18 +46,16 @@ export const CategoriesContainer = () => {
 
   const loading = useSelector(loadingSelector);
   const error = useSelector(errorSelector);
-  let categories = useSelector(categoriesSelector);
-  const forbiddenCategories = useSelector(forbidFilterSelector);
-  const approvedCategories = useSelector(approveFilterSelector);
 
 
-  const profiles = useSelector(profilesSelector);
-  const activeProfile = useSelector(state=>activeProfileSelector(state, id));
   const approvedProfileCategories=useSelector(state =>approvedProfileCategoriesSelector(state, id));
   const forbiddenProfileCategories = useSelector(state=> forbiddenProfileCategoriesSelector(state, id))
 
-  approvedProfileCategories.map(category=> category.isSelected = true);
-  categories = [...approvedProfileCategories,...forbiddenProfileCategories]
+
+
+  const categories = [..._.map(approvedProfileCategories,category=>({ ...category,  isSelected : true})),...forbiddenProfileCategories]
+
+  console.log(approvedProfileCategories)
 
 
   const [filter, setFilter] = useState('All');
@@ -85,12 +78,14 @@ export const CategoriesContainer = () => {
     setApprovedBtnState(false);
   };
 
-  const forbidAllSelected = () => {
-    dispatch(forbidAll());
+  const forbidAllSelected = (id) => {
+    //dispatch(forbidAll(categories));
+    dispatch(forbidAllPC(id))
   };
 
-  const approveAllSelected = () => {
-    dispatch(approveAll());
+  const approveAllSelected = (id,categories) => {
+    //dispatch(approveAll());
+    dispatch(approveAllPC(id, categories))
   };
 
   const filterApproved = (filterState) => {
@@ -121,7 +116,7 @@ export const CategoriesContainer = () => {
       <div className='categories__scroll-wrapper'>
         <div className='categories__container'>
           {_.filter(categories, filterMap[filter]).map((category) => (
-            <CategoryItem key={category.name} category={category} />
+            <CategoryItem key={category.name} category={category}/>
           ))}
         </div>
       </div>
@@ -130,16 +125,16 @@ export const CategoriesContainer = () => {
       <div className='categories__footer'>
         <div className='categories__button-container'>
           <Button
-            disabled={!approvedCategories.length}
-            onClick={() => forbidAllSelected()}
+            disabled={!approvedProfileCategories.length}
+            onClick={() => forbidAllSelected(id)}
             className='categories__button'
           >
             <i className='fa fa-simplybuilt categories__button-container__icon_danger' />
             Forbid All
           </Button>
           <Button
-            disabled={!forbiddenCategories.length}
-            onClick={() => approveAllSelected()}
+            disabled={!forbiddenProfileCategories.length}
+            onClick={() => approveAllSelected(id, categories)}
             className='categories__button'
           >
             <i className='fa fa-smile-o categories__button-container__icon_success' />
