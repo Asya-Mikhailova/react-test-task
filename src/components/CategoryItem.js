@@ -12,7 +12,7 @@ export const CategoryItem = ({ category}) => {
 
   const selectCategory = () => {
     dispatch(changeCategoryStatus(category.name));
-    dispatch(changeProfileCategoryStatus(category.name, id));
+    dispatch(changeProfileCategoryStatus(category.name, category.description, id));
   };
 
 

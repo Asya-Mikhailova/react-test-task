@@ -30,9 +30,9 @@ export const fetchProfilesFailure = (error) => {
   };
 };
 
-export const changeProfileCategoryStatus = (name,id) => ({
+export const changeProfileCategoryStatus = (name, description, id) => ({
   type: 'CHANGE_PROFILE_CATEGORY_STATUS',
-  payload: {id, name}
+  payload: {name, description, id}
 });
 
 export const forbidAllPC = (id) => ({
