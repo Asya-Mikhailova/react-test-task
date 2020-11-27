@@ -6,13 +6,16 @@
             "description": "For new and unassigned devices",
             "categories": [
                 {
-                    "name": "TV shows"
+                    "name": "TV shows",
+                    "description": "Game of Thrones, Sherlock, Breaking Bad, Charmed, Doctor Who, Torchwood, Star Trek: Next Generation, Stargate, Battlestar Galactica, Chilling Adventures of Sabrina, etc."
                 },
                 {
-                    "name": "Architecture"
+                    "name": "Architecture",
+                    "description": "Hundertwasser, Le Corbusier, Gaudi"
                 },
                 {
-                    "name": "Weapons"
+                    "name": "Weapons",
+                    "description": "Guns, knives, swords, cannons"
                 }
             ]
         },
@@ -22,16 +25,20 @@
             "description": "Trusted users",
             "categories": [
                 {
-                    "name": "TV shows"
+                    "name": "TV shows",
+                    "description": "Game of Thrones, Sherlock, Breaking Bad, Charmed, Doctor Who, Torchwood, Star Trek: Next Generation, Stargate, Battlestar Galactica, Chilling Adventures of Sabrina, etc."
                 },
                 {
-                    "name": "Games"
+                    "name": "Games",
+                    "description": "Cards, strategies, chess, checkers"
                 },
                 {
-                    "name": "Art"
+                    "name": "Art",
+                    "description": "Rembrandt, Rubens, da Vinci, Klimt, Mucha"
                 },
                 {
-                    "name": "Hats"
+                    "name": "Hats",
+                    "description": "Fedoras, sombrero, deerstalkers, turbans"
                 }
             ]
         }

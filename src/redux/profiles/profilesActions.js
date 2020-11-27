@@ -29,3 +29,21 @@ export const fetchProfilesFailure = (error) => {
     payload: error,
   };
 };
+
+export const changeProfileCategoryStatus = (name, description, id) => ({
+  type: 'CHANGE_PROFILE_CATEGORY_STATUS',
+  payload: {name, description, id}
+});
+
+export const forbidAllPC = (id) => ({
+  type: 'FORBID_ALL_PC',
+  payload:id,
+
+});
+
+export const approveAllPC = (idAp,categoriesAp) => ({
+  type: 'APPROVE_ALL_PC',
+  payload:{idAp,categoriesAp}
+});
+
+

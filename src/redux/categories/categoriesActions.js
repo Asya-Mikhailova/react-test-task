@@ -40,6 +40,7 @@ export const changeCategoryStatus = (name) => ({
 
 export const forbidAll = () => ({
   type: 'FORBID_ALL',
+
 });
 
 export const approveAll = () => ({

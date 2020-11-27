@@ -1,19 +1,21 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { approveAll, fetchCategories, forbidAll } from '../redux';
+import { approveAllPC, fetchCategories, forbidAllPC} from '../redux';
+import {useParams} from 'react-router-dom';
 
 import _ from 'lodash';
 
 import { CategoryItem } from './CategoryItem';
 import { Button } from './Button';
-import { Sidebar } from './Sidebar';
 import {
   loadingSelector,
   errorSelector,
-  categoriesSelector,
-  forbidFilterSelector,
-  approveFilterSelector,
 } from '../redux/categories/selectors';
+
+import {
+  approvedProfileCategoriesSelector,
+  forbiddenProfileCategoriesSelector
+} from "../redux/profiles/profilesSelectors";
 
 import './CategoriesContainer.scss';
 
@@ -40,15 +42,24 @@ const filterMap = {
 };
 
 export const CategoriesContainer = () => {
+  const {id} = useParams();
+
   const loading = useSelector(loadingSelector);
   const error = useSelector(errorSelector);
-  const categories = useSelector(categoriesSelector);
-  const forbiddenCategories = useSelector(forbidFilterSelector);
-  const approvedCategories = useSelector(approveFilterSelector);
+
+
+  const approvedProfileCategories=useSelector(state =>approvedProfileCategoriesSelector(state, id));
+  const forbiddenProfileCategories = useSelector(state=> forbiddenProfileCategoriesSelector(state, id))
+
+
+
+  const categories = [..._.map(approvedProfileCategories,category=>({ ...category,  isSelected : true})),..._.map(forbiddenProfileCategories,category=>({...category,isSelected:false}))]
+
 
   const [filter, setFilter] = useState('All');
   const [forbiddenBtn, setForbiddenBtnState] = useState(false);
   const [approvedBtn, setApprovedBtnState] = useState(false);
+
 
   categories.sort(dynamicSort('name'));
 
@@ -65,12 +76,12 @@ export const CategoriesContainer = () => {
     setApprovedBtnState(false);
   };
 
-  const forbidAllSelected = () => {
-    dispatch(forbidAll());
+  const forbidAllSelected = (id) => {
+    dispatch(forbidAllPC(id))
   };
 
-  const approveAllSelected = () => {
-    dispatch(approveAll());
+  const approveAllSelected = (id,categories) => {
+    dispatch(approveAllPC(id, categories))
   };
 
   const filterApproved = (filterState) => {
@@ -101,7 +112,7 @@ export const CategoriesContainer = () => {
       <div className='categories__scroll-wrapper'>
         <div className='categories__container'>
           {_.filter(categories, filterMap[filter]).map((category) => (
-            <CategoryItem key={category.name} category={category} />
+            <CategoryItem key={category.name} category={category}/>
           ))}
         </div>
       </div>
@@ -110,16 +121,16 @@ export const CategoriesContainer = () => {
       <div className='categories__footer'>
         <div className='categories__button-container'>
           <Button
-            disabled={!approvedCategories.length}
-            onClick={() => forbidAllSelected()}
+            disabled={!approvedProfileCategories.length}
+            onClick={() => forbidAllSelected(id)}
             className='categories__button'
           >
             <i className='fa fa-simplybuilt categories__button-container__icon_danger' />
             Forbid All
           </Button>
           <Button
-            disabled={!forbiddenCategories.length}
-            onClick={() => approveAllSelected()}
+            disabled={!forbiddenProfileCategories.length}
+            onClick={() => approveAllSelected(id, categories)}
             className='categories__button'
           >
             <i className='fa fa-smile-o categories__button-container__icon_success' />
@@ -132,14 +143,14 @@ export const CategoriesContainer = () => {
             className={`categories__button_border categories__button_border${
               filter === 'Approved' ? '_active' : ''
             }`}
-            name={`Approved ${approvedCategories.length}`}
+            name={`Approved ${approvedProfileCategories.length}`}
             onClick={() => filterApproved('Approved')}
           />
           <Button
             className={`categories__button_border categories__button_border${
               forbiddenBtn ? '_active' : ''
             }`}
-            name={`Forbidden ${forbiddenCategories.length}`}
+            name={`Forbidden ${forbiddenProfileCategories.length}`}
             onClick={() => filterForbidden('Forbidden')}
           />
         </div>
