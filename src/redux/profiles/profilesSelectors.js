@@ -19,7 +19,6 @@ export const forbiddenProfileCategoriesSelector = (state,id)=>{
         return !approvedCategories.find(categoryApproved=>{
             return categoryAll.name === categoryApproved.name;
         })
-
     })
 }
 

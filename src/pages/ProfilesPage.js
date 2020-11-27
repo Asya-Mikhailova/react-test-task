@@ -5,7 +5,7 @@ import { profilesSelector} from '../redux/profiles/profilesSelectors';
 
 import {Sidebar} from '../components/Sidebar';
 import {CategoriesContainer} from "../components/CategoriesContainer";
-import {Route, Switch} from "react-router-dom";
+import {Route, Switch, Redirect} from "react-router-dom";
 
 export const ProfilesPage = () => {
     const profiles = useSelector(profilesSelector);
@@ -24,7 +24,9 @@ export const ProfilesPage = () => {
         <React.Fragment>
                 <Sidebar profiles={profiles} />
                 <Switch>
-                    <Route exact path="/" component={CategoriesContainer}/>
+                    <Route exact path="/" component={CategoriesContainer}>
+                        <Redirect to="/categories/5ce075ab-849b-4f5d-a792-a672d4abd08e"/>
+                    </Route>
                     <Route exact path="/categories/:id" component={CategoriesContainer}/>
                 </Switch>
         </React.Fragment>

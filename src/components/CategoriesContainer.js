@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import {approveAll, approveAllPC, fetchCategories, forbidAll, forbidAllPC} from '../redux';
+import { approveAllPC, fetchCategories, forbidAllPC} from '../redux';
 import {useParams} from 'react-router-dom';
 
 import _ from 'lodash';
@@ -53,9 +53,7 @@ export const CategoriesContainer = () => {
 
 
 
-  const categories = [..._.map(approvedProfileCategories,category=>({ ...category,  isSelected : true})),...forbiddenProfileCategories]
-
-  console.log(approvedProfileCategories)
+  const categories = [..._.map(approvedProfileCategories,category=>({ ...category,  isSelected : true})),..._.map(forbiddenProfileCategories,category=>({...category,isSelected:false}))]
 
 
   const [filter, setFilter] = useState('All');
@@ -79,12 +77,10 @@ export const CategoriesContainer = () => {
   };
 
   const forbidAllSelected = (id) => {
-    //dispatch(forbidAll(categories));
     dispatch(forbidAllPC(id))
   };
 
   const approveAllSelected = (id,categories) => {
-    //dispatch(approveAll());
     dispatch(approveAllPC(id, categories))
   };
 
