@@ -5,7 +5,7 @@ import {useParams} from 'react-router-dom';
 
 import { approveAllPC, fetchCategories, forbidAllPC} from '../redux';
 import { CategoryItem } from './CategoryItem';
-import { Button } from './Button';
+import { Button } from './Button.tsx';
 import {
   loadingSelector,
   errorSelector,
