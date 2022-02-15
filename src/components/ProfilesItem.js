@@ -1,8 +1,7 @@
 import React from 'react';
-
-import './ProfilesItem.scss'
 import {NavLink} from "react-router-dom";
 
+import './ProfilesItem.scss'
 
 export const ProfilesItem = ({profile, className})=>(
     <NavLink exact to={`/categories/${profile.id}`} className={className} activeClassName="active" key={profile.id}>

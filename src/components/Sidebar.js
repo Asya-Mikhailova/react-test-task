@@ -1,8 +1,9 @@
 import React from 'react';
 import _ from 'lodash';
-import {ProfilesItem} from "./ProfilesItem";
-import './Sidebar.scss';
 
+import {ProfilesItem} from "./ProfilesItem";
+
+import './Sidebar.scss';
 
 export const Sidebar = ({profiles}) => (
       <div className="profiles">

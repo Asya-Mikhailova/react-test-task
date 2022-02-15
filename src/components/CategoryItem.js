@@ -1,21 +1,18 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
+import {useParams} from "react-router-dom";
+
 import {changeCategoryStatus, changeProfileCategoryStatus} from '../redux';
 
-
 import './CategoryItem.scss';
-import {useParams} from "react-router-dom";
 
 export const CategoryItem = ({ category}) => {
   const dispatch = useDispatch();
   const {id} = useParams();
-
   const selectCategory = () => {
     dispatch(changeCategoryStatus(category.name));
     dispatch(changeProfileCategoryStatus(category.name, category.description, id));
   };
-
-
 
   return (
     <button

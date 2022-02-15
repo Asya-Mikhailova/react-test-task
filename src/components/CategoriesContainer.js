@@ -1,17 +1,15 @@
+import _ from 'lodash';
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { approveAllPC, fetchCategories, forbidAllPC} from '../redux';
 import {useParams} from 'react-router-dom';
 
-import _ from 'lodash';
-
+import { approveAllPC, fetchCategories, forbidAllPC} from '../redux';
 import { CategoryItem } from './CategoryItem';
 import { Button } from './Button';
 import {
   loadingSelector,
   errorSelector,
 } from '../redux/categories/selectors';
-
 import {
   approvedProfileCategoriesSelector,
   forbiddenProfileCategoriesSelector
@@ -42,28 +40,20 @@ const filterMap = {
 };
 
 export const CategoriesContainer = () => {
+  const dispatch = useDispatch();
   const {id} = useParams();
-
-  const loading = useSelector(loadingSelector);
-  const error = useSelector(errorSelector);
-
-
+  const isLoading = useSelector(loadingSelector);
+  const isError = useSelector(errorSelector);
   const approvedProfileCategories=useSelector(state =>approvedProfileCategoriesSelector(state, id));
   const forbiddenProfileCategories = useSelector(state=> forbiddenProfileCategoriesSelector(state, id))
 
-
-
   const categories = [..._.map(approvedProfileCategories,category=>({ ...category,  isSelected : true})),..._.map(forbiddenProfileCategories,category=>({...category,isSelected:false}))]
-
 
   const [filter, setFilter] = useState('All');
   const [forbiddenBtn, setForbiddenBtnState] = useState(false);
   const [approvedBtn, setApprovedBtnState] = useState(false);
 
-
   categories.sort(dynamicSort('name'));
-
-  const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(fetchCategories());
@@ -79,11 +69,9 @@ export const CategoriesContainer = () => {
   const forbidAllSelected = (id) => {
     dispatch(forbidAllPC(id))
   };
-
   const approveAllSelected = (id,categories) => {
     dispatch(approveAllPC(id, categories))
   };
-
   const filterApproved = (filterState) => {
     if (!approvedBtn) {
       setApprovedBtnState(true);
@@ -93,7 +81,6 @@ export const CategoriesContainer = () => {
       switchFiltersOff();
     }
   };
-
   const filterForbidden = (filterState) => {
     if (!forbiddenBtn) {
       setForbiddenBtnState(true);
@@ -104,8 +91,8 @@ export const CategoriesContainer = () => {
     }
   };
 
-  if (loading) return <h2>Loading...</h2>;
-  if (error) return <h2>{error}</h2>;
+  if (isLoading) return <h2>Loading...</h2>;
+  if (isError) return <h2>{isError}</h2>;
 
   return (
     <div className='categories'>
@@ -116,8 +103,6 @@ export const CategoriesContainer = () => {
           ))}
         </div>
       </div>
-
-
       <div className='categories__footer'>
         <div className='categories__button-container'>
           <Button
